@@ -1,20 +1,19 @@
 {
-    "version": "0.1",
-    "words": [
-        "composables",
-        "elif",
-        "esbuild",
-        "intlify",
-        "mouseenter",
-        "mouseleave",
-        "mousemove",
-        "precache",
-        "precaching",
-        "SVGSVG",
-        "tailwindcss",
-        "vite"
-    ],
-    "enableFiletypes": [
-        "vue"
-    ]
+  "version": "0.1",
+  "words": [
+    "composables",
+    "elif",
+    "esbuild",
+    "intlify",
+    "mouseenter",
+    "mouseleave",
+    "mousemove",
+    "precache",
+    "precaching",
+    "SVGSVG",
+    "tailwindcss",
+    "vite"
+  ],
+  "dictionaries": ["typescript"],
+  "enableFiletypes": ["vue"]
 }

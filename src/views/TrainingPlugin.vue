@@ -1,6 +1,7 @@
 <template>
   <form action="javascript:void(0)" @submit="save()">
-    <TrainingScoreChart />
+    <TrainingScoreChart v-model="formData.scores" />
+    {{ formData }}
     <label>
       Name
       <input type="text" class="form-input" />
@@ -11,11 +12,10 @@
 
 <script lang="ts">
 import TrainingScoreChart from "@/components/TrainingScoreChart.vue";
-import { defineComponent } from "vue";
-
 import type { Input } from "@/plugin-generators/training";
 import generate from "@/plugin-generators/training";
 import { saveAs } from "file-saver";
+import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "TrainingPlugin",
@@ -24,9 +24,9 @@ export default defineComponent({
   },
   props: {},
   setup: () => {
-    const formData: Input = {
+    const formData: Input = reactive({
       scores: [],
-    };
+    });
 
     const save = () => {
       const body = generate(formData);
@@ -34,6 +34,7 @@ export default defineComponent({
     };
     return {
       save,
+      formData,
     };
   },
 });

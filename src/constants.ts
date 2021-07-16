@@ -6,6 +6,14 @@ export enum TrainingType {
   WISDOM = 5,
 }
 
+export const ALL_TRAINING_TYPE = [
+  TrainingType.SPEED,
+  TrainingType.STAMINA,
+  TrainingType.POWER,
+  TrainingType.GUTS,
+  TrainingType.WISDOM,
+];
+
 export enum RaceGrade {
   G1 = 700,
   // TODO: add more
