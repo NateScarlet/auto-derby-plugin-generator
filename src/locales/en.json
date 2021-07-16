@@ -1,0 +1,6 @@
+{
+    "plugin-type": {
+        "training": "Training",
+        "race": "Race"
+    }
+}

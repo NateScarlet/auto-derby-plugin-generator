@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      { "prefer": "type-imports" }
+    ],
+    "import/no-extraneous-dependencies": [
+      "off",
+      { "devDependencies": ["sw.ts"] }
+    ],
+    "no-param-reassign": ["error", { "props": false }],
+    // typescript handled rules
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      { "ts": "never", "json": "always", "vue": "always" }
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["warn"],
+    "no-undef": "off"
+  },
+  "plugins": ["@typescript-eslint", "vue"]
+}
