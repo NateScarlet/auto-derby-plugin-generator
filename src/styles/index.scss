@@ -1,0 +1,140 @@
+/* purgecss start ignore */
+
+@tailwind base;
+
+// Reset focus outline
+button:focus,
+:focus {
+  outline: initial;
+}
+
+// Custom scrollbar for webkit browser
+
+::-webkit-scrollbar {
+  @apply w-1;
+  @apply h-1;
+}
+::-webkit-scrollbar-track {
+  @apply rounded-sm;
+  @apply bg-gray-800;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-sm;
+  @apply bg-gray-600;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+::-webkit-scrollbar-thumb:active {
+  @apply bg-gray-600;
+}
+
+@tailwind components;
+
+%form-button-common {
+  @apply px-5;
+  @apply py-2;
+  @apply border;
+  @apply border-gray-300;
+  @apply rounded-sm;
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+%form-focus {
+  @apply border-blue-400;
+}
+
+.form-button {
+  @extend %form-button-common;
+  @apply text-black;
+  @apply bg-gray-100;
+  &:hover {
+    @apply bg-gray-200;
+  }
+  &:disabled {
+    @apply text-gray-600;
+    @apply bg-gray-800;
+  }
+  &:focus {
+    @extend %form-focus;
+  }
+}
+
+.form-input {
+  &:disabled {
+    @apply text-gray-700;
+    @apply cursor-not-allowed;
+    &::placeholder {
+      @apply text-gray-700;
+    }
+  }
+}
+
+.form-select {
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+}
+
+
+/* purgecss end ignore */
+
+@tailwind utilities;
+
+#h {
+  .keep-all {
+    word-break: keep-all;
+  }
+
+  @variants responsive {
+    .clear-none {
+      clear: none;
+    }
+  }
+
+  input.spin-button-none {
+    // https://stackoverflow.com/a/4298216
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    &[type='number'] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+  }
+
+  .flex-center {
+    @apply justify-center;
+    @apply items-center;
+    @apply align-middle;
+  }
+
+
+
+  .bg-gradient-overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.1) 20%,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0.1) 80%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  .animate-button-click {
+    animation: button-click 500ms ease-in-out;
+  }
+
+  @keyframes button-click {
+    30% {
+      @apply opacity-25;
+    }
+  }
+}

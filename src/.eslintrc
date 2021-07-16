@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": ["airbnb-base", "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended","plugin:vue/vue3-essential", "prettier"],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "rules": {
+    // typescript handled import error
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      { "ts": "never", "json": "always", "vue": "always" }
+    ]
+  },
+  "plugins": ["@typescript-eslint"]
+}
