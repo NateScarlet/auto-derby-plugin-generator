@@ -34,8 +34,10 @@ _DEFAULT_ACTION = _ACTION_${input.defaultAction.toUpperCase()}
 
 _RULES: Dict[Text, Dict[int, int]] = {}
 
+
 def _define_rule(turn: int, name: Text, action: int):
     _RULES.setdefault(name, {})[turn] = action
+
 
 ${input.raceActions
   .map(
@@ -43,14 +45,16 @@ ${input.raceActions
       `_define_rule(${i.turn}, "${i.name}", _ACTION_${i.action.toUpperCase()})`
   )
   .join("\n")}
-  
+
 
 class Plugin(auto_derby.Plugin):
     def install(self) -> None:
         class Race(auto_derby.config.single_mode_race_class):
             def score(self, ctx: single_mode.Context) -> float:
                 ret = super().score(ctx)
-                action = _RULES.get(self.name, {}).get(ctx.turn_count(), _DEFAULT_ACTION)
+                action = _RULES.get(self.name, {}).get(
+                    ctx.turn_count(), _DEFAULT_ACTION
+                )
                 if action == _ACTION_BAN:
                     ret = 0
                 elif action == _ACTION_LESS:
@@ -60,6 +64,7 @@ class Plugin(auto_derby.Plugin):
                 elif action == _ACTION_PICK:
                     ret += 100
                 return ret
+
         auto_derby.config.single_mode_race_class = Race
 
 
