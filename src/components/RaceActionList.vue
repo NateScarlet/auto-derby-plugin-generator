@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center space-x-2">
+  <div class="flex flex-wrap items-center space-x-2">
     <input
       v-model="formData.query"
       class="form-input"
@@ -82,12 +82,13 @@
       />
     </label>
   </div>
-  <VirtualList is="ol" :values="listData" :item-height="48" :size="16">
-    <template #default="{ value: i, attrs }">
+  <VirtualList is="ol" :values="listData" :item-height="64" :size="8">
+    <template #default="{ value: i, attrs, index }">
       <RaceActionListItemVue
         v-bind="attrs"
         :turn="i.turn"
         :race="i.race"
+        :hide-date="index === 0 ? false : i.turn === listData[index - 1].turn"
         :action="i.action"
         @update:action="i.handleUpdateAction"
       />

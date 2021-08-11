@@ -67,6 +67,7 @@ export default defineComponent({
         .map((i, index) => ({
           value: i,
           key: topIndex.value + index,
+          index: topIndex.value + index,
           attrs: {
             style: {
               height: `${props.itemHeight}px`,

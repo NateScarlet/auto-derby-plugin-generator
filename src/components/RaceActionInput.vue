@@ -1,55 +1,30 @@
 <template>
-  <label
-    class="form-button inline-flex flex-center"
-    :class="{
-      'bg-blue-400 text-white hover:bg-blue-300': actionProxy === 'ban',
-    }"
-  >
-    <svg class="fill-current h-6" viewBox="0 0 24 24">
+  <label :class="labelClass('ban')">
+    <svg :class="svgClass" viewBox="0 0 24 24">
       <path :d="mdiCancel"></path>
     </svg>
     <input v-model="actionProxy" type="radio" class="hidden" value="ban" />
   </label>
-  <label
-    class="form-button inline-flex flex-center"
-    :class="{
-      'bg-blue-400 text-white hover:bg-blue-300': actionProxy === 'less',
-    }"
-  >
-    <svg class="fill-current h-6" viewBox="0 0 24 24">
+  <label :class="labelClass('less')">
+    <svg :class="svgClass" viewBox="0 0 24 24">
       <path :d="mdiThumbDown"></path>
     </svg>
     <input v-model="actionProxy" type="radio" class="hidden" value="less" />
   </label>
-  <label
-    class="form-button inline-flex flex-center"
-    :class="{
-      'bg-blue-400 text-white hover:bg-blue-300': actionProxy === 'none',
-    }"
-  >
-    <svg class="fill-current h-6" viewBox="0 0 24 24">
+  <label :class="labelClass('none')">
+    <svg :class="svgClass" viewBox="0 0 24 24">
       <path :d="mdiThumbsUpDown"></path>
     </svg>
     <input v-model="actionProxy" type="radio" class="hidden" value="none" />
   </label>
-  <label
-    class="form-button inline-flex flex-center"
-    :class="{
-      'bg-blue-400 text-white hover:bg-blue-300': actionProxy === 'more',
-    }"
-  >
-    <svg class="fill-current h-6" viewBox="0 0 24 24">
+  <label :class="labelClass('more')">
+    <svg :class="svgClass" viewBox="0 0 24 24">
       <path :d="mdiThumbUp"></path>
     </svg>
     <input v-model="actionProxy" type="radio" class="hidden" value="more" />
   </label>
-  <label
-    class="form-button inline-flex flex-center"
-    :class="{
-      'bg-blue-400 text-white hover:bg-blue-300': actionProxy === 'pick',
-    }"
-  >
-    <svg class="fill-current h-6" viewBox="0 0 24 24">
+  <label :class="labelClass('pick')">
+    <svg :class="svgClass" viewBox="0 0 24 24">
       <path :d="mdiShieldCheck"></path>
     </svg>
     <input v-model="actionProxy" type="radio" class="hidden" value="pick" />
@@ -79,8 +54,15 @@ export default defineComponent({
   },
   setup: (props, ctx) => {
     const actionProxy = usePropVModel(ctx, props, "modelValue");
+    const labelClass = (action: string) => ({
+      "form-button inline-flex flex-center p-1 sm:px-4": true,
+      "bg-blue-400 text-white hover:bg-blue-300": actionProxy.value === action,
+    });
+    const svgClass = "fill-current h-6 lg:h-8";
     return {
       actionProxy,
+      labelClass,
+      svgClass,
     };
   },
   data() {
