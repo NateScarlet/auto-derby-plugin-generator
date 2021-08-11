@@ -3,7 +3,7 @@
     <input
       v-model="formData.query"
       class="form-input"
-      placeholder="Search race name"
+      placeholder="Search race or stadium name"
     />
     <div class="inline-flex flex-col">
       <label>
@@ -153,7 +153,14 @@ export default defineComponent({
         if (i.race.isTargetRace()) {
           return false;
         }
-        if (!i.race.name.includes(formData.query)) {
+        if (
+          !formData.query
+            .split(" ")
+            .some(
+              (word) =>
+                i.race.name.includes(word) || i.race.stadium.includes(word)
+            )
+        ) {
           return false;
         }
         if (
