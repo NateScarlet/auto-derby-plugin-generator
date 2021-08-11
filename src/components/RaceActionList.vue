@@ -1,29 +1,83 @@
 <template>
-  <input v-model="formData.query" class="form-input" placeholder="Search" />
-  <label>
-    dart
-    <input
-      v-model="formData.includeDart"
-      class="form-checkbox border"
-      type="checkbox"
-    />
-  </label>
-  <label>
-    turf
-    <input
-      v-model="formData.includeTurf"
-      class="form-checkbox border"
-      type="checkbox"
-    />
-  </label>
-  <label>
-    modified ({{ modelValue.length }})
-    <input
-      v-model="formData.modifiedOnly"
-      class="form-checkbox border"
-      type="checkbox"
-    />
-  </label>
+  <div class="flex items-center space-x-2">
+    <input v-model="formData.query" class="form-input" placeholder="Search race name" />
+    <div class="inline-flex flex-col">
+      <label>
+        dart
+        <input
+          v-model="formData.includeDart"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        turf
+        <input
+          v-model="formData.includeTurf"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+    </div>
+    <div class="inline-flex flex-wrap w-48 space-x-2">
+      <label>
+        G1
+        <input
+          v-model="formData.includeG1"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        G2
+        <input
+          v-model="formData.includeG2"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        G3
+        <input
+          v-model="formData.includeG3"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        Pre-OP
+        <input
+          v-model="formData.includePreOP"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        OP
+        <input
+          v-model="formData.includeOP"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+      <label>
+        未勝利戦
+        <input
+          v-model="formData.includeNotWinning"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+    </div>
+    <label>
+      modified ({{ modelValue.length }})
+      <input
+        v-model="formData.modifiedOnly"
+        class="form-checkbox border"
+        type="checkbox"
+      />
+    </label>
+  </div>
   <VirtualList is="ol" :values="listData" :item-height="48" :size="16">
     <template #default="{ value: i, attrs }">
       <RaceActionListItemVue
@@ -73,6 +127,12 @@ export default defineComponent({
       modifiedOnly: false,
       includeTurf: true,
       includeDart: true,
+      includeG1: true,
+      includeG2: true,
+      includeG3: true,
+      includePreOP: true,
+      includeOP: true,
+      includeNotWinning: true,
     });
     const normalizedRaces = computed(() =>
       races.value
@@ -107,6 +167,24 @@ export default defineComponent({
           if (!formData.includeDart && i.race.ground === Ground.DART) {
             return false;
           }
+        }
+        if (!formData.includeG1 && i.race.grade === Grade.G1) {
+          return false;
+        }
+        if (!formData.includeG2 && i.race.grade === Grade.G2) {
+          return false;
+        }
+        if (!formData.includeG3 && i.race.grade === Grade.G3) {
+          return false;
+        }
+        if (!formData.includePreOP && i.race.grade === Grade.PRE_OP) {
+          return false;
+        }
+        if (!formData.includeOP && i.race.grade === Grade.OP) {
+          return false;
+        }
+        if (!formData.includeNotWinning && i.race.grade === Grade.NOT_WINNING) {
+          return false;
         }
         return true;
       })
