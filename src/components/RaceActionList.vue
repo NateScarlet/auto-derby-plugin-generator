@@ -1,9 +1,13 @@
 <template>
   <div class="flex items-center space-x-2">
-    <input v-model="formData.query" class="form-input" placeholder="Search race name" />
+    <input
+      v-model="formData.query"
+      class="form-input"
+      placeholder="Search race name"
+    />
     <div class="inline-flex flex-col">
       <label>
-        dart
+        ダート
         <input
           v-model="formData.includeDart"
           class="form-checkbox border"
@@ -11,7 +15,7 @@
         />
       </label>
       <label>
-        turf
+        芝
         <input
           v-model="formData.includeTurf"
           class="form-checkbox border"
