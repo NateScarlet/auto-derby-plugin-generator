@@ -1,6 +1,9 @@
 <template>
   <li class="mb-1">
-    <div class="text-sm font-bold text-center border-t-2" :class="{ invisible: hideDate }">
+    <div
+      class="text-sm font-bold text-center border-t-2"
+      :class="{ invisible: hideDate }"
+    >
       <SingleModeTurnWidgetVue :value="turn" />
     </div>
     <div class="flex">
@@ -80,9 +83,9 @@ export default defineComponent({
       }
       switch (race.ground) {
         case Ground.TURF:
-          return "ダート";
+          return "芝";
         case Ground.DART:
-          return "芝 ";
+          return "ダート";
         default:
           return Ground[race.ground];
       }
