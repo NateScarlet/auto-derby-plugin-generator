@@ -22,7 +22,7 @@ export default defineConfig({
   },
   base: "./",
   define: {
-    APP_VERSION: JSON.stringify(shell("git describe --always --dirty")),
+    __VERSION__: JSON.stringify(shell("git describe --always --dirty")),
   },
   plugins: [
     vue(),

@@ -59,7 +59,7 @@ export default async function withBrowserCheck(
     )}&body=${encodeURIComponent(`\
 ## Version
 
-${APP_VERSION}
+${__VERSION__}
 
 ## URL
 

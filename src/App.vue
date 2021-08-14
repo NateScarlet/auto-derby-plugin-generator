@@ -50,7 +50,7 @@ export default defineComponent({
       },
       { immediate: true }
     );
-    return { route, lang, version: APP_VERSION };
+    return { route, lang, version: __VERSION__ };
   },
   data() {
     return {
