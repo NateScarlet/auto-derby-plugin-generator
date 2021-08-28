@@ -9,5 +9,5 @@ self.addEventListener("message", (event) => {
 // eslint-disable-next-line no-underscore-dangle
 precacheAndRoute(self.__WB_MANIFEST);
 precacheAndRoute([
-  "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/single_mode_races.jsonl",
+  "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/auto_derby/data/single_mode_races.jsonl",
 ]);

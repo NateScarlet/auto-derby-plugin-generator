@@ -8,7 +8,7 @@ export default function useSingleModeRaces(): Ref<SingleModeRace[]> {
   const races = usePromise(
     computed(async () => {
       const resp = await fetch(
-        "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/single_mode_races.jsonl"
+        "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/auto_derby/data/single_mode_races.jsonl"
       );
       return (await resp.text())
         .split("\n")
