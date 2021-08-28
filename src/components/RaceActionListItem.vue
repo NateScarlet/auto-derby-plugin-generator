@@ -10,7 +10,7 @@
       <div class="flex-auto">
         <div class="text-xs sm:text-sm text-gray-600 space-x-2">
           <span>
-            {{ race.stadium }}
+            {{ stadiumText(race) }}
           </span>
           <span class="w-32 ml-2">
             {{ gradeText(race) }}
@@ -77,6 +77,12 @@ export default defineComponent({
   },
   setup: (props, ctx) => {
     const actionProxy = usePropVModel(ctx, props, "action");
+    const stadiumText = (race: SingleModeRace): string => {
+      if (race.grade === Grade.NOT_WINNING) {
+        return "...";
+      }
+      return race.stadium;
+    };
     const groundText = (race: SingleModeRace): string => {
       if (race.grade === Grade.NOT_WINNING) {
         return "...";
@@ -108,6 +114,7 @@ export default defineComponent({
     };
 
     return {
+      stadiumText,
       groundText,
       gradeText,
       distanceText,
