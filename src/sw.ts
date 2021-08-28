@@ -1,3 +1,4 @@
+import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
 import { precacheAndRoute } from "workbox-precaching";
 
 declare let self: ServiceWorkerGlobalScope;
@@ -8,6 +9,4 @@ self.addEventListener("message", (event) => {
 // self.__WB_MANIFEST is default injection point
 // eslint-disable-next-line no-underscore-dangle
 precacheAndRoute(self.__WB_MANIFEST);
-precacheAndRoute([
-  "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/auto_derby/data/single_mode_races.jsonl",
-]);
+precacheAndRoute([SINGLE_MODE_RACE_DATA_URL]);

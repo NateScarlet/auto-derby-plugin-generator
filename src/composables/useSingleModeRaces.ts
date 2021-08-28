@@ -1,4 +1,5 @@
 import usePromise from "@/composables/usePromise";
+import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
 import SingleModeRace from "@/single_mode_race";
 import isNonNull from "@/utils/isNonNull";
 import type { Ref } from "vue";
@@ -7,9 +8,7 @@ import { computed, ref } from "vue";
 export default function useSingleModeRaces(): Ref<SingleModeRace[]> {
   const races = usePromise(
     computed(async () => {
-      const resp = await fetch(
-        "https://cdn.jsdelivr.net/gh/NateScarlet/auto-derby@master/auto_derby/data/single_mode_races.jsonl"
-      );
+      const resp = await fetch(SINGLE_MODE_RACE_DATA_URL);
       return (await resp.text())
         .split("\n")
         .map((i) => {
