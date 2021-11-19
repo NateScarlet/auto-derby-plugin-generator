@@ -35,14 +35,17 @@ export default defineConfig({
       strategies: "injectManifest",
       includeAssets: ["/favicon.ico"],
       manifest: {
-        name: "Auto Derby",
-        short_name: "Auto Derby",
+        name: "auto-derby plugin generator",
+        short_name: "auto-derby plugin generator",
+        description:
+          "A web app to generate [auto-derby](https://github.com/NateScarlet/auto-derby) plugin.",
+        lang: "mul",
         theme_color: "#ffffff",
         icons: [
           {
-            src: "/favicon.ico", // <== don't remove slash, for testing purposes
-            sizes: "32x32",
-            type: "image/x-ico",
+            src: "./icon-256.png",
+            sizes: "256x256",
+            type: "image/png",
           },
         ],
       },
