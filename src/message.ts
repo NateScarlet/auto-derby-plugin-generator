@@ -1,4 +1,3 @@
-import * as sentry from "@sentry/browser";
 import type { VNode } from "vue";
 import { TransitionGroup, defineComponent, h, reactive } from "vue";
 
@@ -62,11 +61,6 @@ export function message(render: () => VNode): () => void {
 }
 
 export function info(text: string, duration = 3000 + 200 * text.length): void {
-  sentry.addBreadcrumb({
-    category: "message.info",
-    level: sentry.Severity.Info,
-    message: text,
-  });
   const close = message(() =>
     h(
       "li",
@@ -80,11 +74,6 @@ export function info(text: string, duration = 3000 + 200 * text.length): void {
 }
 
 export function error(text: string, duration = 3000 + 200 * text.length): void {
-  sentry.addBreadcrumb({
-    category: "message.error",
-    level: sentry.Severity.Error,
-    message: text,
-  });
   const close = message(() =>
     h(
       "li",
