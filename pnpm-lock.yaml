@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@intlify/vite-plugin-vue-i18n': ^2.3.2
   '@juggle/resize-observer': ^3.3.1
-  '@mdi/js': ^5.9.55
+  '@mdi/js': ^6.5.95
   '@tailwindcss/forms': ^0.3.4
   '@types/d3': ^7.0.0
   '@types/file-saver': ^2.0.3
@@ -39,7 +39,7 @@ specifiers:
 
 dependencies:
   '@juggle/resize-observer': 3.3.1
-  '@mdi/js': 5.9.55
+  '@mdi/js': registry.npmmirror.com/@mdi/js/6.5.95
   '@types/d3': 7.0.0
   '@types/file-saver': 2.0.3
   '@types/lodash-es': 4.17.4
@@ -1310,10 +1310,6 @@ packages:
 
   /@juggle/resize-observer/3.3.1:
     resolution: {integrity: sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==}
-    dev: false
-
-  /@mdi/js/5.9.55:
-    resolution: {integrity: sha512-BbeHMgeK2/vjdJIRnx12wvQ6s8xAYfvMmEAVsUx9b+7GiQGQ9Za8jpwp17dMKr9CgKRvemlAM4S7S3QOtEbp4A==}
     dev: false
 
   /@nodelib/fs.stat/2.0.5:
@@ -4603,6 +4599,12 @@ packages:
     name: '@humanwhocodes/object-schema'
     version: 1.2.1
     dev: true
+
+  registry.npmmirror.com/@mdi/js/6.5.95:
+    resolution: {integrity: sha512-x/bwEoAGP+Mo10Dfk5audNIPi7Yz8ZBrILcbXLW3ShOI/njpgodzpgpC2WYK3D2ZSC392peRRemIFb/JsyzzYQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@mdi/js/download/@mdi/js-6.5.95.tgz}
+    name: '@mdi/js'
+    version: 6.5.95
+    dev: false
 
   registry.npmmirror.com/@tailwindcss/forms/0.3.4_tailwindcss@2.2.19:
     resolution: {integrity: sha1-5JOdwWRQ7M9P0gKXcAlvOMu1VtQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/forms/download/@tailwindcss/forms-0.3.4.tgz}
