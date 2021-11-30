@@ -2,7 +2,6 @@ lockfileVersion: 5.3
 
 specifiers:
   '@intlify/vite-plugin-vue-i18n': ^2.3.2
-  '@intlify/vue-i18n-loader': ^2.1.2
   '@juggle/resize-observer': ^3.3.1
   '@mdi/js': ^5.9.55
   '@tailwindcss/forms': ^0.3.4
@@ -59,7 +58,6 @@ dependencies:
 
 devDependencies:
   '@intlify/vite-plugin-vue-i18n': 2.3.2_0a635717b5e64442fc6b458be918e09b
-  '@intlify/vue-i18n-loader': 2.1.2_eslint@7.30.0+vue@3.1.4
   '@tailwindcss/forms': registry.npmmirror.com/@tailwindcss/forms/0.3.4_tailwindcss@2.2.19
   '@typescript-eslint/eslint-plugin': 4.28.3_8da3816a7c3fb8ebc9f4c4b3e4b2e38f
   '@typescript-eslint/parser': 4.28.3_eslint@7.30.0+typescript@4.3.5
@@ -1353,20 +1351,6 @@ packages:
       '@intlify/message-resolver': 9.1.7
       '@intlify/runtime': 9.1.7
       '@intlify/shared': 9.1.7
-
-  /@intlify/vue-i18n-loader/2.1.2_eslint@7.30.0+vue@3.1.4:
-    resolution: {integrity: sha1-kaCFjiYnXfwsnCeu+YgwKMraRa4=}
-    engines: {node: '>= 12'}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      '@intlify/bundle-utils': 0.1.0_eslint@7.30.0
-      '@intlify/shared': 9.1.7
-      loader-utils: 2.0.0
-      vue: 3.1.4
-    transitivePeerDependencies:
-      - eslint
-    dev: true
 
   /@juggle/resize-observer/3.3.1:
     resolution: {integrity: sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==}
@@ -3307,15 +3291,6 @@ packages:
       big.js: 5.2.2
       emojis-list: 3.0.0
       json5: 1.0.1
-    dev: true
-
-  /loader-utils/2.0.0:
-    resolution: {integrity: sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ==}
-    engines: {node: '>=8.9.0'}
-    dependencies:
-      big.js: 5.2.2
-      emojis-list: 3.0.0
-      json5: 2.2.0
     dev: true
 
   /locate-path/2.0.0:
