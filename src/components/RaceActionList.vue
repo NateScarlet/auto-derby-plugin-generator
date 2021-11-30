@@ -2,6 +2,7 @@
   <div class="flex flex-wrap items-center space-x-2">
     <input
       v-model="formData.query"
+      type="search"
       class="form-input"
       placeholder="Search race or stadium name"
     />
