@@ -12,15 +12,16 @@
           <span>
             {{ stadiumText(race) }}
           </span>
-          <span class="w-32 ml-2">
+          <span>
             {{ gradeText(race) }}
           </span>
-          <span class="w-24">
+          <span>
             {{ groundText(race) }}
           </span>
-          <span class="w-24">
+          <span>
             {{ distanceText(race) }}
           </span>
+          <span> +{{ race.fanCounts[0] }}人 </span>
         </div>
         <div>
           {{ race.name }}
