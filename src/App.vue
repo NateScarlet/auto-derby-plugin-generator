@@ -14,7 +14,7 @@
     >
       GitHub
     </a>
-    <Select
+    <SelectBox
       v-model="lang"
       :options="[
         { key: 'en', value: 'en', label: 'English' },

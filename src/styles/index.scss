@@ -10,52 +10,147 @@ button:focus,
 
 @tailwind components;
 
-%form-button-common {
-  @apply px-5;
-  @apply py-2;
-  @apply border;
-  @apply border-gray-300;
-  @apply rounded-sm;
-  &:disabled {
-    @apply cursor-not-allowed;
-  }
-}
-
-%form-focus {
-  @apply border-blue-400;
-}
-
-.form-button {
-  @extend %form-button-common;
-  @apply cursor-pointer;
-  @apply text-black;
-  @apply bg-gray-100;
-  &:hover {
-    @apply bg-gray-200;
-  }
-  &:disabled {
-    @apply text-gray-600;
-    @apply bg-gray-800;
-  }
-  &:focus {
-    @extend %form-focus;
-  }
-}
-
 .form-input {
-  @apply border;
+  @apply border border-gray-300 px-4 py-2 leading-normal rounded;
   &:disabled {
-    @apply text-gray-700;
-    @apply cursor-not-allowed;
-    &::placeholder {
-      @apply text-gray-700;
-    }
+    @apply cursor-not-allowed text-gray-400 bg-gray-100;
   }
 }
 
 .form-select {
+  @apply border border-gray-300 px-4 py-2 leading-normal rounded;
+  @apply border-gray-300;
+  @apply border;
+  @apply rounded;
+  @apply pt-2 pr-10 pb-2 px-3;
+  @apply text-base;
+  @apply leading-normal;
+  @apply min-w-48;
+
+  appearance: none;
+  color-adjust: exact;
+  @apply bg-select-icon;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-position: right 0.5rem center;
+  background-size: 1.5em 1.5em;
+}
+
+.form-checkbox,
+input[type="checkbox"] {
   &:disabled {
     @apply cursor-not-allowed;
+    @apply border-gray-300;
+    @apply bg-gray-100;
+    &:checked {
+      @apply bg-blue-300;
+    }
+  }
+}
+
+%form-button-common {
+  @apply py-2;
+  @apply w-16;
+  @apply leading-normal;
+  @apply rounded;
+  &:disabled {
+    @apply cursor-not-allowed;
+  }
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.form-button {
+  @extend %form-button-common;
+  @apply text-gray-700;
+  @apply bg-white;
+  @apply border;
+  @apply border-gray-300;
+  &:hover {
+    @apply text-main;
+    @apply bg-blue-100;
+    @apply border-main;
+    @apply border-opacity-25;
+  }
+  &:disabled {
+    @apply text-gray-400;
+    @apply border-gray-200;
+    @apply bg-white;
+  }
+  &:active {
+    @apply border-blue-600;
+  }
+}
+
+.form-button-main {
+  @extend %form-button-common;
+  @apply text-white;
+  @apply bg-main;
+  &:hover {
+    @apply bg-main;
+    @apply bg-opacity-50;
+  }
+  &:disabled {
+    @apply bg-main;
+    @apply bg-opacity-50;
+  }
+  &:active {
+    @apply border-main;
+  }
+}
+
+.form-button-danger {
+  @extend %form-button-common;
+  @apply text-danger;
+  @apply bg-white;
+  @apply border;
+  @apply border-danger;
+  &:not(:disabled):hover {
+    @apply bg-danger;
+    @apply bg-opacity-25;
+  }
+  &:disabled {
+    @apply text-danger;
+    @apply text-opacity-50;
+    @apply border-opacity-50;
+  }
+  &:active {
+    @apply border-danger;
+  }
+}
+
+.form-button-info {
+  @extend %form-button-common;
+  @apply text-white;
+  @apply bg-info;
+  &:hover {
+    @apply bg-info;
+    @apply bg-opacity-50;
+  }
+  &:disabled {
+    @apply bg-info;
+    @apply bg-opacity-50;
+  }
+  &:active {
+    @apply border-info;
+  }
+}
+
+.form-button-success {
+  @extend %form-button-common;
+  @apply text-white;
+  @apply bg-success;
+  &:hover {
+    @apply bg-success;
+    @apply bg-opacity-50;
+  }
+  &:disabled {
+    @apply bg-success;
+    @apply bg-opacity-50;
+  }
+  &:active {
+    @apply border-success;
   }
 }
 

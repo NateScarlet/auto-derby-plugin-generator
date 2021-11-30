@@ -1,6 +1,10 @@
 const { mdiChevronDown } = require("@mdi/js");
 const forms = require("@tailwindcss/forms");
+var svgDataURI = require('mini-svg-data-uri');
 
+function inlineSVG(svg) {
+  return `url("${svgDataURI(svg)}")`;
+}
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -36,22 +40,17 @@ module.exports = {
         96: "24rem",
         128: "32rem",
       },
-      customForms: (theme) => ({
-        default: {
-          "input, textarea, multiselect, select": {
-            color: "#000000",
-            backgroundColor: "#ffffff",
-            borderColor: theme("colors.gray.400"),
-            "&:focus": {
-              boxShadow: null,
-            },
-          },
-          select: {
-            icon: `<svg fill="${theme(
-              "colors.gray.500"
-            )}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${mdiChevronDown}"/></svg>`,
-          },
-        },
+      minWidth: {
+        32: '8rem',
+        48: '12rem',
+        64: '16rem',
+      },
+      backgroundImage: (theme) => ({
+        'select-icon': inlineSVG(
+          `<svg fill="${theme(
+            'colors.gray.400'
+          )}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${mdiChevronDown}"/></svg>`
+        ),
       }),
     },
   },
