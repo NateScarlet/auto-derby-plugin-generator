@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts">
+import { saveAs } from "file-saver";
+import { defineComponent, reactive } from "vue";
 import RaceActionInputVue from "@/components/RaceActionInput.vue";
 import RaceActionListVue from "@/components/RaceActionList.vue";
 import type { Action, RaceAction } from "@/plugin-generators/race";
 import generate from "@/plugin-generators/race";
-import { saveAs } from "file-saver";
-import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "RacePlugin",

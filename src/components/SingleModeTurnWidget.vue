@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import useSingleModeTurn from "@/composables/useSingleModeTurn";
 import { computed, defineComponent } from "vue";
+import useSingleModeTurn from "@/composables/useSingleModeTurn";
 
 export default defineComponent({
   name: "SingleModeTurnWidget",

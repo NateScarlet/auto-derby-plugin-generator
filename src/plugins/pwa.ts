@@ -1,7 +1,7 @@
-import { message } from "@/message";
 import { mdiUpdate } from "@mdi/js";
 import { registerSW } from "virtual:pwa-register";
 import { h } from "vue";
+import { message } from "@/message";
 
 export default function install(): void {
   const updateSW = registerSW({

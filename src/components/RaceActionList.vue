@@ -98,14 +98,14 @@
 </template>
 
 <script lang="ts">
+import { uniqBy } from "lodash-es";
+import type { PropType } from "vue";
+import { computed, defineComponent, reactive } from "vue";
 import RaceActionListItemVue from "@/components/RaceActionListItem.vue";
 import usePropVModel from "@/composables/usePropVModel";
 import useSingleModeRaces from "@/composables/useSingleModeRaces";
 import type { Action, RaceAction } from "@/plugin-generators/race";
 import { Grade, Ground } from "@/single_mode_race";
-import { uniqBy } from "lodash-es";
-import type { PropType } from "vue";
-import { computed, defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "RaceActionList",

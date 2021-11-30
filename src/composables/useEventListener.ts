@@ -1,6 +1,6 @@
-import useCleanup from '@/composables/useCleanup';
 import type { Ref } from 'vue';
 import { watch } from 'vue';
+import useCleanup from '@/composables/useCleanup';
 
 export interface EventTarget<Args extends unknown[]> {
   addEventListener(...args: Args): void;

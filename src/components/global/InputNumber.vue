@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts">
-import usePropVModel from "@/composables/usePropVModel";
 import { computed, defineComponent, ref } from "vue";
+import usePropVModel from "@/composables/usePropVModel";
 
 export default defineComponent({
   name: "InputNumber",

@@ -1,8 +1,8 @@
-import useCleanup from "@/composables/useCleanup";
-import addResizeListener from "@/utils/addResizeListener";
 import { debounce } from "lodash-es";
 import type { Ref } from "vue";
 import { ref, watch } from "vue";
+import addResizeListener from "@/utils/addResizeListener";
+import useCleanup from "@/composables/useCleanup";
 
 export default function useElementSize(el: Ref<Element | undefined>): {
   width: Ref<number>;

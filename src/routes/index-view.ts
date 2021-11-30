@@ -3,5 +3,5 @@ import {} from "vue-router";
 
 export default defineRoute({
   path: "",
-  component: () => import("@/views/Index.vue"),
+  component: () => import("@/views/IndexView.vue"),
 });

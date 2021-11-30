@@ -5,5 +5,5 @@ import training from "./training";
 export default defineRoute({
   path: "/plugins",
   children: [race, training],
-  component: () => import("@/views/Plugin.vue")
+  component: () => import("@/views/PluginView.vue")
 });

@@ -1,6 +1,6 @@
-import useCleanup from "@/composables/useCleanup";
 import type { Ref } from "vue";
 import { customRef } from "vue";
+import useCleanup from "@/composables/useCleanup";
 
 export default function useLocation(): Readonly<Ref<Location>> {
   const { addCleanup } = useCleanup();

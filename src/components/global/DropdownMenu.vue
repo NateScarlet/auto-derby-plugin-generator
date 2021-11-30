@@ -8,6 +8,8 @@
       leave-active-class="transition ease-out duration-75"
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
+      @before-enter="$emit('open')"
+      @after-leave="$emit('close')"
     >
       <div
         v-show="visible"
@@ -21,13 +23,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, ref } from 'vue';
 import defaults from '@/components/global/defaults';
 import useEventListener from '@/composables/useEventListener';
 import containsDeepChildNode from '@/utils/containsDeepChildNode';
-import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  name: 'Dropdown',
+  name: 'DropdownMenu',
   props: {
     visible: {
       type: Boolean,
@@ -41,6 +43,11 @@ export default defineComponent({
       type: String,
       default: 'w-full',
     },
+  },
+  emits: {
+    'update:visible': null,
+    open: null,
+    close: null,
   },
   setup: (props, ctx) => {
     const el = ref<HTMLElement>();

@@ -18,7 +18,7 @@ import { defineComponent } from "vue";
 import { useI18n } from "@/plugins/i18n";
 
 export default defineComponent({
-  name: "Index",
+  name: "IndexView",
   setup() {
     return {
       ...useI18n(),

@@ -1,5 +1,5 @@
-import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
 import { precacheAndRoute } from "workbox-precaching";
+import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
 
 declare let self: ServiceWorkerGlobalScope;
 

@@ -28,12 +28,12 @@
 </template>
 
 <script lang="ts">
-import useStorage from "@/composables/useStorage";
-import { MessageList } from "@/message";
-import i18n from "@/plugins/i18n";
 import { mdiArrowLeft } from "@mdi/js";
 import { defineComponent, watch } from "vue";
 import { useRoute } from "vue-router";
+import useStorage from "@/composables/useStorage";
+import { MessageList } from "@/message";
+import i18n from "@/plugins/i18n";
 
 export default defineComponent({
   name: "App",

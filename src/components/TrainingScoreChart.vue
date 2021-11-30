@@ -29,6 +29,11 @@
 </template>
 
 <script lang="ts">
+import { mdiCursorDefault, mdiCursorMove, mdiMinus, mdiPlus } from "@mdi/js";
+import * as d3 from "d3";
+import { round, sortBy } from "lodash-es";
+import type { PropType } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 import useCleanup from "@/composables/useCleanup";
 import useElementSize from "@/composables/useElementSize";
 import type { Vector2 } from "@/composables/useLineSelect";
@@ -36,11 +41,6 @@ import useLineSelect from "@/composables/useLineSelect";
 import { ALL_TRAINING_TYPE, TrainingType } from "@/constants";
 import type { ExpectedScore } from "@/plugin-generators/training";
 import distanceVector2 from "@/utils/distanceVector2";
-import { mdiCursorDefault, mdiCursorMove, mdiMinus, mdiPlus } from "@mdi/js";
-import * as d3 from "d3";
-import { round, sortBy } from "lodash-es";
-import type { PropType } from "vue";
-import { computed, defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "TrainingScoreChart",
@@ -136,15 +136,15 @@ export default defineComponent({
       ctx.emit("update:modelValue", ret);
     };
 
-    const deleteValue = (type: TrainingType, point: Vector2): void => {
-      ctx.emit(
-        "update:modelValue",
-        props.modelValue.filter(
-          (i) =>
-            !(i.type === type && i.turn === point[0] && i.value === point[1])
-        )
-      );
-    };
+    // const deleteValue = (type: TrainingType, point: Vector2): void => {
+    //   ctx.emit(
+    //     "update:modelValue",
+    //     props.modelValue.filter(
+    //       (i) =>
+    //         !(i.type === type && i.turn === point[0] && i.value === point[1])
+    //     )
+    //   );
+    // };
 
     watch(svg, (svgValue) => {
       cleanup();

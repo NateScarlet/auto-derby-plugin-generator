@@ -1,5 +1,5 @@
 <template>
-  <Dropdown
+  <DropdownMenu
     ref="dropdown"
     v-model:visible="dropdownVisible"
     class="select"
@@ -7,14 +7,7 @@
   >
     <output
       ref="output"
-      class="
-        inline-block
-        form-select
-        cursor-pointer
-        w-full
-        relative
-        whitespace-no-wrap
-      "
+      class="inline-block form-select cursor-pointer relative w-full"
       :tabindex="dropdownVisible || disabled ? undefined : 0"
       :class="{
         'bg-none': clearButtonVisible,
@@ -23,64 +16,81 @@
       }"
       @focus="focus()"
     >
-      <template v-if="values.length > 0">
-        <slot name="output" :selected="selected">
-          <template v-for="i in selected">
-            <template v-if="multiple">
-              <div
-                :key="i.key"
-                class="
-                  inline-block
-                  border
-                  bg-gray-200
-                  pl-1
-                  pr-6
-                  mr-1
-                  rounded
-                  relative
-                "
-              >
-                <slot v-bind="entryContext(i, 'output')"
-                  ><span>{{ i.label != null ? i.label : i.value }}</span></slot
-                >
-                <button
+      <div
+        class="
+          inline-flex
+          items-center
+          flex-wrap
+          overflow-auto
+          align-top
+          w-full
+          gap-1
+        "
+      >
+        <template v-if="values.length > 0">
+          <slot name="output" :selected="selected">
+            <template v-for="i in selected">
+              <template v-if="multiple">
+                <div
+                  :key="i.key"
                   class="
-                    absolute
-                    right-0
-                    top-0
-                    h-full
-                    pr-1
-                    text-gray-400
-                    outline-none
+                    inline-flex
+                    items-center
+                    border
+                    flex-none
+                    box-border
+                    bg-gray-200
+                    pl-1
+                    pr-6
+                    rounded
+                    h-6
+                    relative
                   "
-                  tabindex="-1"
-                  type="button"
                 >
-                  <svg
-                    class="w-4 fill-current"
-                    viewBox="0 0 24 24"
-                    @click="toggle(i.key, false)"
+                  <slot v-bind="entryContext(i, 'output')"
+                    ><span>{{
+                      i.label != null ? i.label : i.value
+                    }}</span></slot
                   >
-                    <path :d="mdiCloseCircle"></path>
-                  </svg>
-                </button>
-              </div>
+                  <button
+                    class="
+                      absolute
+                      right-0
+                      top-0
+                      h-full
+                      pr-1
+                      text-gray-400
+                      outline-none
+                    "
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <svg
+                      class="w-4 fill-current"
+                      viewBox="0 0 24 24"
+                      @click="toggle(i.key, false)"
+                    >
+                      <path :d="mdiCloseCircle"></path>
+                    </svg>
+                  </button>
+                </div>
+              </template>
+              <template v-else>
+                <slot v-bind="entryContext(i, 'output')">
+                  <span :key="i.key">{{
+                    i.label != null ? i.label : i.value
+                  }}</span>
+                </slot>
+              </template>
             </template>
-            <template v-else>
-              <slot v-bind="entryContext(i, 'output')">
-                <span :key="i.key">{{
-                  i.label != null ? i.label : i.value
-                }}</span>
-              </slot>
-            </template>
-          </template>
-        </slot>
-      </template>
-      <template v-else>
-        <slot name="placeholder"
-          ><span class="text-gray-500 text-sm">{{ placeholder }}</span></slot
-        >
-      </template>
+          </slot>
+        </template>
+        <template v-else>
+          <slot name="placeholder"
+            ><span class="text-gray-500">{{ placeholder }}</span></slot
+          >
+        </template>
+      </div>
       <template v-if="clearButtonVisible">
         <button
           class="
@@ -112,13 +122,14 @@
     <template #dropdown>
       <slot name="search" :inputListeners="inputListeners"></slot>
       <ol
+        ref="optionList"
         class="max-h-96 overflow-y-auto"
         aria-orientation="vertical"
         role="menu"
       >
         <template v-for="i in optionEntries" :key="i.key">
           <li
-            :ref="(el) => (optionElements[i.key] = el)"
+            :ref="(el) => optionRefFn(el, i.key)"
             class="p-2 cursor-pointer relative"
             :data-key="i.key"
             :class="{
@@ -154,21 +165,6 @@
             </slot>
           </li>
         </template>
-        <template v-if="options.length === 0">
-          <div class="text-gray-500 text-center text-md p-2">
-            <template v-if="loading">
-              <svg
-                class="w-16 h-16 animate-spin fill-current inline-block"
-                viewBox="0 0 24 24"
-              >
-                <path :d="mdiLoading"></path>
-              </svg>
-            </template>
-            <template v-else>
-              <slot name="empty"><span>无匹配</span></slot>
-            </template>
-          </div>
-        </template>
       </ol>
     </template>
     <input
@@ -180,15 +176,10 @@
       @invalid="$emit('invalid', $event)"
       v-on="hasSearch ? {} : inputListeners"
     />
-  </Dropdown>
+  </DropdownMenu>
 </template>
 
 <script lang="ts">
-import defaults from "@/components/global/defaults";
-import type Dropdown from "@/components/global/Dropdown.vue";
-import containsDeepChildNode from "@/utils/containsDeepChildNode";
-import equalSet from "@/utils/equalSet";
-import toHotKey from "@/utils/toHotKey";
 import {
   mdiCheck,
   mdiChevronDown,
@@ -209,22 +200,38 @@ import {
 } from "vue";
 import type { Entry, Option } from "./entry";
 import { fromOptions as entriesFromOptions } from "./entry";
+import type DropdownMenu from "@/components/global/DropdownMenu.vue";
+import defaults from "@/components/global/defaults";
+import containsDeepChildNode from "@/utils/containsDeepChildNode";
+import equalSet from "@/utils/equalSet";
+import toHotKey from "@/utils/toHotKey";
+import useValidationMessage from "@/composables/useValidationMessage";
+import useInfiniteScroll from "@/composables/useInfiniteScroll";
 
 export default defineComponent({
-  name: "Select",
+  name: "SelectBox",
   props: {
-    modelValue: {},
+    modelValue: {
+      type: undefined,
+      default: undefined,
+    } as unknown as PropType<unknown>,
     required: { type: Boolean, default: false },
     requiredMessage: { type: String, default: "请选择" },
     placeholder: { type: String, default: "请选择" },
-    nullValue: {},
+    nullValue: {
+      type: undefined,
+      default: undefined,
+    } as unknown as PropType<unknown>,
     multiple: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     options: { type: Array as PropType<Option<unknown>[]>, required: true },
-    dropdownClass: { type: String },
-    outputClass: { type: String, default: "h-full" },
+    dropdownClass: {
+      type: String,
+      default: undefined,
+    },
+    outputClass: { type: String, default: "" },
     highlightClass: {
       type: String,
       default: () => defaults.select.highlightClass,
@@ -234,6 +241,9 @@ export default defineComponent({
       default: () => defaults.select.disabledClass,
     },
     inputKeyPrefix: { type: String, default: "__input:" },
+    hasMore: {
+      type: Boolean,
+    },
   },
   emits: {
     "update:modelValue": null,
@@ -242,18 +252,25 @@ export default defineComponent({
     blur: null,
     clear: null,
     invalid: null,
+    "fetch-more": null,
   },
   setup: (props, ctx) => {
     const transparentInput = ref<HTMLInputElement>();
-    const optionElements = ref<Record<string, HTMLLIElement>>({});
+    const optionElements = ref<
+      Record<string, Pick<HTMLLinkElement, "scrollIntoView">>
+    >({});
+    const optionRefFn = (el: unknown, key: string) => {
+      if (el instanceof HTMLLIElement) {
+        optionElements.value[key] = el;
+      }
+    };
     onBeforeUpdate(() => {
       optionElements.value = {};
     });
-    const dropdown = ref<InstanceType<typeof Dropdown>>();
+    const dropdown = ref<InstanceType<typeof DropdownMenu>>();
     const highlight = ref("");
     const dropdownVisible = ref(false);
     const selectedKeys = ref(new Set<string>());
-
     const values = computed({
       get(): unknown[] {
         return (
@@ -263,13 +280,11 @@ export default defineComponent({
       set(v: unknown[]) {
         ctx.emit(
           "update:modelValue",
-          props.multiple && v.length > 0 ? v : v[0] ?? props.nullValue
+          props.multiple ? v : v[0] ?? props.nullValue
         );
       },
     });
-
     const optionEntries = computed(() => entriesFromOptions(props.options));
-
     const valueEntries = computed(() =>
       values.value.map(
         (i, index) =>
@@ -279,47 +294,41 @@ export default defineComponent({
           }
       )
     );
-
     const entries = computed(() =>
       uniqBy([...optionEntries.value, ...valueEntries.value], (i) => i.key)
     );
-
     const selected = computed(() =>
       entries.value.filter((i) => selectedKeys.value.has(i.key))
     );
-
     const clearButtonVisible = computed(
       () => (props.multiple || props.clearable) && selected.value.length > 0
     );
-
     const hasSearch = computed(() => !!ctx.slots.search);
-
     const scrollToHighlight = () => {
       optionElements.value[highlight.value]?.scrollIntoView({
         block: "nearest",
       });
     };
     const offsetHighlight = (offset: number): void => {
-      const entriesValue = optionEntries.value;
-      if (entriesValue.length === 0) {
+      const entries2 = optionEntries.value;
+      if (entries2.length === 0) {
         return;
       }
-      let index = entriesValue.findIndex((i) => i.key === highlight.value);
+      let index = entries2.findIndex((i) => i.key === highlight.value);
       index += offset;
       if (index < 0) {
         index = 0;
       }
-      if (index > entriesValue.length - 1) {
-        index = entriesValue.length - 1;
+      if (index > entries2.length - 1) {
+        index = entries2.length - 1;
       }
-      const v = entriesValue[index];
+      const v = entries2[index];
       if (!v) {
         return;
       }
       highlight.value = v.key;
       scrollToHighlight();
     };
-
     const focus = () => {
       highlight.value = valueEntries.value[0]?.key ?? "";
       dropdownVisible.value = true;
@@ -328,11 +337,9 @@ export default defineComponent({
         if (!hasSearch.value) {
           transparentInput.value?.focus();
         }
-
         ctx.emit("focus");
       });
     };
-
     const blur = () => {
       if (
         document.activeElement instanceof HTMLElement &&
@@ -343,15 +350,15 @@ export default defineComponent({
       }
       ctx.emit("blur");
     };
-
-    const setCustomValidity = (v: string): void => {
-      if (!transparentInput.value) {
-        nextTick(() => setCustomValidity(v));
-        return;
-      }
-      transparentInput.value.setCustomValidity(v);
-    };
-
+    const { reportValidity, setCustomValidity } = useValidationMessage(
+      transparentInput,
+      computed(() => {
+        if (props.required && values.value.length === 0) {
+          return props.requiredMessage;
+        }
+        return "";
+      })
+    );
     const toggle = (
       key: string,
       force?: boolean,
@@ -360,12 +367,11 @@ export default defineComponent({
       if (props.options.length === 0) {
         return;
       }
-      const isSelected = selectedKeys.value.has(key);
-      const wanted = force ?? !isSelected;
-      if (wanted === isSelected) {
+      const selected2 = selectedKeys.value.has(key);
+      const wanted = force ?? !selected2;
+      if (wanted === selected2) {
         return;
       }
-
       const keys = new Set(props.multiple ? selectedKeys.value : undefined);
       if (wanted === true) {
         keys.add(key);
@@ -376,20 +382,10 @@ export default defineComponent({
       selectedKeys.value = keys;
       onchange?.(keys, oldKeys);
     };
-
     const clear = (): void => {
       selectedKeys.value = new Set();
       ctx.emit("clear");
     };
-
-    const validateRequired = (): void => {
-      if (props.required && values.value.length === 0) {
-        setCustomValidity(props.requiredMessage);
-      } else {
-        setCustomValidity("");
-      }
-    };
-
     const handleOptionClick = (v: Entry<unknown>): void => {
       if (v.disabled) {
         return;
@@ -429,14 +425,12 @@ export default defineComponent({
       disabled: v.disabled,
       location,
     });
-
     const updateSelectedKeys = (): void => {
       const keys = new Set(valueEntries.value.map((i) => i.key));
       if (!equalSet(selectedKeys.value, keys)) {
         selectedKeys.value = keys;
       }
     };
-
     const inputListeners = {
       keydown: (e: KeyboardEvent) => {
         switch (toHotKey(e)) {
@@ -456,12 +450,9 @@ export default defineComponent({
             break;
           case "Enter":
             e.preventDefault();
-            if (!props.multiple) {
-              toggle(highlight.value, true);
-              blur();
-            } else {
-              toggle(highlight.value);
-            }
+            entries.value
+              .filter((i) => i.key === highlight.value)
+              .forEach(handleOptionClick);
             break;
           default:
         }
@@ -469,20 +460,12 @@ export default defineComponent({
       blur: () => blur(),
       focus: () => focus(),
     };
-
     watch(
       () => props.modelValue,
       () => {
-        validateRequired();
         updateSelectedKeys();
       },
       { immediate: true, deep: true }
-    );
-    watch(
-      () => props.required,
-      () => {
-        validateRequired();
-      }
     );
     watch(
       () => props.options,
@@ -491,7 +474,6 @@ export default defineComponent({
       },
       { deep: true }
     );
-
     watch(
       () => selectedKeys.value,
       (n) => {
@@ -501,7 +483,12 @@ export default defineComponent({
       },
       { deep: true }
     );
-
+    const optionList = ref<HTMLOListElement>();
+    useInfiniteScroll(optionList, () => {
+      if (props.hasMore) {
+        ctx.emit("fetch-more");
+      }
+    });
     return {
       blur,
       clear,
@@ -512,6 +499,7 @@ export default defineComponent({
       focus,
       handleOptionClick,
       hasSearch,
+      optionRefFn,
       highlight,
       inputListeners,
       offsetHighlight,
@@ -521,10 +509,12 @@ export default defineComponent({
       selected,
       selectedKeys,
       setCustomValidity,
+      reportValidity,
       toggle,
       transparentInput,
       updateSelectedKeys,
       values,
+      optionList,
     };
   },
   data() {

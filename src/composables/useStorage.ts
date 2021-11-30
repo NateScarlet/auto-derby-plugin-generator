@@ -1,6 +1,6 @@
-import useCleanup from "@/composables/useCleanup";
 import type { Ref, UnwrapRef } from "vue";
 import { ref, watch } from "vue";
+import useCleanup from "@/composables/useCleanup";
 
 export type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 

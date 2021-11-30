@@ -34,11 +34,6 @@
 </template>
 
 <script lang="ts">
-import RaceActionInputVue from "@/components/RaceActionInput.vue";
-import SingleModeTurnWidgetVue from "@/components/SingleModeTurnWidget.vue";
-import usePropVModel from "@/composables/usePropVModel";
-import type { Action } from "@/plugin-generators/race";
-import SingleModeRace, { Grade, Ground } from "@/single_mode_race";
 import {
   mdiCancel,
   mdiShieldCheck,
@@ -48,6 +43,11 @@ import {
 } from "@mdi/js";
 import type { PropType } from "vue";
 import { defineComponent } from "vue";
+import RaceActionInputVue from "@/components/RaceActionInput.vue";
+import SingleModeTurnWidgetVue from "@/components/SingleModeTurnWidget.vue";
+import usePropVModel from "@/composables/usePropVModel";
+import type { Action } from "@/plugin-generators/race";
+import SingleModeRace, { Grade, Ground } from "@/single_mode_race";
 
 export default defineComponent({
   name: "RaceActionListItem",

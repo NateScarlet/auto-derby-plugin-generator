@@ -32,8 +32,6 @@
 </template>
 
 <script lang="ts">
-import usePropVModel from "@/composables/usePropVModel";
-import type { Action } from "@/plugin-generators/race";
 import type { PropType } from "vue";
 import { defineComponent } from "vue";
 import {
@@ -43,6 +41,8 @@ import {
   mdiThumbsUpDown,
   mdiThumbUp,
 } from "@mdi/js";
+import type { Action } from "@/plugin-generators/race";
+import usePropVModel from "@/composables/usePropVModel";
 
 export default defineComponent({
   name: "RaceActionInput",

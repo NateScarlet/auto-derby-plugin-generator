@@ -1,6 +1,7 @@
-import distanceVector2 from "@/utils/distanceVector2";
 import * as d3 from "d3";
-import { computed, ComputedRef, Ref } from "vue";
+import type { ComputedRef, Ref } from "vue";
+import { computed } from "vue";
+import distanceVector2 from "@/utils/distanceVector2";
 
 export type Vector2 = readonly [x: number, y: number];
 
