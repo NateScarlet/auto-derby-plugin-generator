@@ -89,7 +89,7 @@
         v-bind="attrs"
         :turn="i.turn"
         :race="i.race"
-        :hide-date="index === 0 ? false : i.turn === listData[index - 1].turn"
+        :hide-date="i.turn === listData[index - 1]?.turn"
         :action="i.action"
         @update:action="i.handleUpdateAction"
       />
@@ -156,8 +156,10 @@ export default defineComponent({
           return false;
         }
         if (
+          formData.query.trim() &&
           !formData.query
             .split(" ")
+            .filter((word) => word.trim())
             .some(
               (word) =>
                 i.race.name.includes(word) || i.race.stadium.includes(word)
