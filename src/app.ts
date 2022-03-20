@@ -14,5 +14,4 @@ const app = createApp(App);
   await globalComponents(app);
   app.mount("#app");
   pwa();
-
 })();

@@ -5,25 +5,81 @@ import legacy from "@vitejs/plugin-legacy";
 import vue from "@vitejs/plugin-vue";
 import { execSync } from "child_process";
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin, build } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import * as cheerio from 'cheerio';
+import * as babel from '@babel/core';
 
 function shell(command: string): string {
   return execSync(command).toString().trimEnd();
 }
+const alias = {
+  "@/": resolve(__dirname, "src") + "/",
+};
+
+const define = {
+  __VERSION__: JSON.stringify(shell("git describe --always --dirty")),
+};
+
+function one<T>(v: T | T[]): T {
+  if (Array.isArray(v)) {
+    return v[0];
+  }
+  return v;
+}
+
+export const preload = (): Plugin => ({
+  name: "preload",
+  async transformIndexHtml(html) {
+    const res = one(
+      await build({
+        root: __dirname,
+        configFile: false,
+        plugins: [],
+        resolve: { alias },
+        define,
+        build: {
+          write: false,
+          target: false,
+          rollupOptions: {
+            input: resolve(__dirname, "./src/preload.ts"),
+            output: {
+              format: "iife",
+            },
+          },
+        },
+      })
+    );
+    if (!("output" in res)) {
+      throw new Error("invalid build result");
+    }
+    const output = one(res.output);
+    if (!("code" in output)) {
+      throw new Error("invalid output");
+    }
+
+    const $ = cheerio.load(html);
+    const code = (
+      await babel.transformAsync(output.code, {
+        configFile: false,
+        minified: true,
+        presets: [["@babel/preset-env", { targets: { ie: 10 } }]],
+      })
+    ).code;
+
+    $("#app").after(`<script>${code}</script>`);
+    return $.html();
+  },
+});
 
 // https://vitejs.dev/config/
 export default defineConfig({
   root: __dirname,
   resolve: {
-    alias: {
-      "@/": resolve(__dirname, "src") + "/",
-    },
+    alias,
   },
   base: "./",
-  define: {
-    __VERSION__: JSON.stringify(shell("git describe --always --dirty")),
-  },
+  define,
   plugins: [
     vue(),
     vueI18n({
@@ -51,5 +107,6 @@ export default defineConfig({
       },
     }),
     legacy(),
+    preload(),
   ],
 });

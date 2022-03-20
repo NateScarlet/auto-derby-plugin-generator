@@ -24,13 +24,16 @@
     "workbox-window": "^6.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
     "@intlify/vite-plugin-vue-i18n": "^3.2.1",
     "@tailwindcss/forms": "^0.3.4",
+    "@types/babel__core": "^7.1.19",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "@vitejs/plugin-legacy": "^1.6.3",
     "@vitejs/plugin-vue": "^1.10.1",
     "@vue/compiler-sfc": "3.2.23",
+    "cheerio": "^1.0.0-rc.10",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
