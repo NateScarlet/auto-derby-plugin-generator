@@ -1,0 +1,1 @@
+System.register(["./vendor-legacy.1884c80f.js"],(function(t){"use strict";var n;return{setters:[function(t){n=t.G}],execute:function(){t("u",(function(t,e,r){var u=arguments.length>3&&void 0!==arguments[3]?arguments[3]:function(t){return t},c=n({get:function(){return u(e[r])},set:function(n){var c=u(n);c!==e[r]&&t.emit("update:".concat(r),c)}});return c}))}}}));
