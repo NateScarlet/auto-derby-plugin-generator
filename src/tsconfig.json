@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
+    "jsx": "preserve",
     "paths": {
       "@/*": ["./*"]
     }

@@ -1,4 +1,5 @@
 <template>
+  <link rel="prefetch" :href="SINGLE_MODE_RACE_DATA_URL" />
   <nav class="bg-gray-200 text-right">
     <template v-if="route.path != '/'">
       <router-link to="/" class="float-left">
@@ -34,6 +35,7 @@ import { useRoute } from "vue-router";
 import useStorage from "@/composables/useStorage";
 import { MessageList } from "@/message";
 import i18n from "@/plugins/i18n";
+import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
 
 export default defineComponent({
   name: "App",
@@ -55,6 +57,7 @@ export default defineComponent({
   data() {
     return {
       mdiArrowLeft,
+      SINGLE_MODE_RACE_DATA_URL,
     };
   },
 });
