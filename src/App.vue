@@ -1,5 +1,5 @@
 <template>
-  <link rel="prefetch" :href="SINGLE_MODE_RACE_DATA_URL" />
+  <link crossorigin="anonymous" rel="prefetch" :href="SINGLE_MODE_RACE_DATA_URL" />
   <nav class="bg-gray-200 text-right">
     <template v-if="route.path != '/'">
       <router-link to="/" class="float-left">

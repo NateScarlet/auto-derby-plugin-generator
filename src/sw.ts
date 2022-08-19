@@ -11,4 +11,4 @@ self.addEventListener("message", (event) => {
 // self.__WB_MANIFEST is default injection point
 // eslint-disable-next-line no-underscore-dangle
 precacheAndRoute(self.__WB_MANIFEST);
-registerRoute(SINGLE_MODE_RACE_DATA_URL, new StaleWhileRevalidate({}));
+registerRoute(SINGLE_MODE_RACE_DATA_URL, new StaleWhileRevalidate());
