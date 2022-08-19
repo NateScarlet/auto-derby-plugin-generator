@@ -38,6 +38,7 @@ specifiers:
   vue: 3.2.23
   vue-i18n: ^9.1.7
   vue-router: ^4.0.10
+  workbox-broadcast-update: ^6.5.4
   workbox-precaching: ^6.4.1
   workbox-routing: ^6.5.4
   workbox-strategies: ^6.5.4
@@ -87,6 +88,7 @@ devDependencies:
   typescript: 4.5.2
   vite: 2.6.14_sass@1.44.0
   vite-plugin-pwa: 0.11.8_xi2xhaxjt5kltp7mvn4iysnme4
+  workbox-broadcast-update: 6.5.4
 
 packages:
 
@@ -3108,7 +3110,7 @@ packages:
     dev: true
 
   /semver/6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/semver/-/semver-6.3.0.tgz}
+    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
     dev: true
 
@@ -3143,7 +3145,7 @@ packages:
     dev: true
 
   /source-map/0.5.7:
-    resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/source-map/-/source-map-0.5.7.tgz}
+    resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -3440,9 +3442,15 @@ packages:
     dev: true
 
   /workbox-broadcast-update/6.4.1:
-    resolution: {integrity: sha512-oz1WAEppIatucgIc49zXPsyQG6004eoKsyiJVGDyN94LIFpUDfGa+cykN32X0PaqOC9bdlj+4EjVBi0OuwkIHA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/workbox-broadcast-update/download/workbox-broadcast-update-6.4.1.tgz}
+    resolution: {integrity: sha512-oz1WAEppIatucgIc49zXPsyQG6004eoKsyiJVGDyN94LIFpUDfGa+cykN32X0PaqOC9bdlj+4EjVBi0OuwkIHA==}
     dependencies:
       workbox-core: 6.4.1
+    dev: true
+
+  /workbox-broadcast-update/6.5.4:
+    resolution: {integrity: sha512-I/lBERoH1u3zyBosnpPEtcAVe5lwykx9Yg1k6f8/BGEPGaMMgZrwVrqL1uA9QZ1NGGFoyE6t9i7lBjOlDhFEEw==}
+    dependencies:
+      workbox-core: 6.5.4
     dev: true
 
   /workbox-build/6.4.1_@types+babel__core@7.1.19:

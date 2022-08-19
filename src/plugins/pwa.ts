@@ -2,8 +2,15 @@ import { mdiUpdate } from "@mdi/js";
 import { registerSW } from "virtual:pwa-register";
 import { h } from "vue";
 import { message } from "@/message";
+import isWorkboxCacheUpdatedEvent from "@/utils/isWorkboxBroadcastUpdateEvent";
+import events from "@/events";
 
 export default function install(): void {
+  navigator.serviceWorker.addEventListener("message", async (event) => {
+    if (isWorkboxCacheUpdatedEvent(event)) {
+      events.workboxCacheUpdate.dispatchEvent(event);
+    }
+  });
   const updateSW = registerSW({
     onNeedRefresh() {
       message(() =>
