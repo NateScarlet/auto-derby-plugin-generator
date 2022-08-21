@@ -2,9 +2,9 @@ import type { Ref } from 'vue';
 import { computed, ref } from 'vue';
 import usePromise from '@/composables/usePromise';
 import { SINGLE_MODE_RACE_DATA_URL } from '@/settings';
-import SingleModeRace from '@/single_mode_race';
 import isNonNull from '@/utils/isNonNull';
 import events from '@/events';
+import Race from '@/domain/single_mode/Race';
 
 const version = ref(0);
 
@@ -21,7 +21,7 @@ const races = usePromise(
       .split('\n')
       .map((i) => {
         try {
-          return new SingleModeRace(JSON.parse(i));
+          return new Race(JSON.parse(i));
         } catch {
           return undefined;
         }
@@ -33,6 +33,6 @@ const races = usePromise(
     keepLatest: true,
   }
 );
-export default function useSingleModeRaces(): Ref<SingleModeRace[]> {
+export default function useSingleModeRaces(): Ref<Race[]> {
   return races;
 }

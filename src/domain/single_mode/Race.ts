@@ -1,47 +1,11 @@
-export enum Ground {
-  TURF = 1,
-  DART = 2,
-}
+import Grade from '@/domain/single_mode/Grade';
+import Ground from '@/domain/single_mode/Ground';
+import Permission from '@/domain/single_mode/Permission';
+import type TargetStatus from '@/domain/single_mode/TargetStatus';
+import type Track from '@/domain/single_mode/Track';
+import type Turn from '@/domain/single_mode/Turn';
 
-export enum Track {
-  MIDDLE = 1,
-  IN = 2,
-  OUT = 3,
-}
-
-export enum TargetStatus {
-  SPEED = 1,
-  STAMINA = 2,
-  POWER = 3,
-  GUTS = 4,
-  WISDOM = 5,
-}
-
-export enum Permission {
-  JUNIOR = 1,
-  CLASSIC = 2,
-  SENIOR_OR_CLASSIC = 3,
-  SENIOR = 4,
-  URA = 5,
-}
-
-export enum Grade {
-  DEBUT = 900,
-  NOT_WINNING = 800,
-  PRE_OP = 700,
-  OP = 400,
-  G3 = 300,
-  G2 = 200,
-  G1 = 100,
-}
-
-export enum Turn {
-  RIGHT = 1,
-  LEFT = 2,
-  NONE = 4,
-}
-
-export interface SingleModeRaceData {
+export interface RaceInput {
   characters: string[];
   distance: number;
   entryCount: number;
@@ -59,7 +23,7 @@ export interface SingleModeRaceData {
   turn: Turn;
 }
 
-export default class SingleModeRace {
+export default class Race {
   characters: string[];
 
   distance: number;
@@ -90,22 +54,22 @@ export default class SingleModeRace {
 
   turn: Turn;
 
-  constructor(data: SingleModeRaceData) {
-    this.characters = data.characters;
-    this.distance = data.distance;
-    this.entryCount = data.entryCount;
-    this.fanCounts = data.fanCounts;
-    this.grade = data.grade;
-    this.ground = data.ground;
-    this.half = data.half;
-    this.minFanCount = data.minFanCount;
-    this.month = data.month;
-    this.name = data.name;
-    this.permission = data.permission;
-    this.stadium = data.stadium;
-    this.targetStatus = data.targetStatus;
-    this.track = data.track;
-    this.turn = data.turn;
+  constructor(input: RaceInput) {
+    this.characters = input.characters;
+    this.distance = input.distance;
+    this.entryCount = input.entryCount;
+    this.fanCounts = input.fanCounts;
+    this.grade = input.grade;
+    this.ground = input.ground;
+    this.half = input.half;
+    this.minFanCount = input.minFanCount;
+    this.month = input.month;
+    this.name = input.name;
+    this.permission = input.permission;
+    this.stadium = input.stadium;
+    this.targetStatus = input.targetStatus;
+    this.track = input.track;
+    this.turn = input.turn;
   }
 
   years(): number[] {

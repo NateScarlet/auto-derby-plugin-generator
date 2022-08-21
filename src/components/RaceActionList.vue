@@ -105,7 +105,8 @@ import RaceActionListItemVue from '@/components/RaceActionListItem.vue';
 import usePropVModel from '@/composables/usePropVModel';
 import useSingleModeRaces from '@/composables/useSingleModeRaces';
 import type { Action, RaceAction } from '@/plugin-generators/race';
-import { Grade, Ground } from '@/single_mode_race';
+import Grade from '@/domain/single_mode/Grade';
+import Ground from '@/domain/single_mode/Ground';
 
 export default defineComponent({
   name: 'RaceActionList',

@@ -48,7 +48,9 @@ import RaceActionInputVue from '@/components/RaceActionInput.vue';
 import SingleModeTurnWidgetVue from '@/components/SingleModeTurnWidget.vue';
 import usePropVModel from '@/composables/usePropVModel';
 import type { Action } from '@/plugin-generators/race';
-import SingleModeRace, { Grade, Ground } from '@/single_mode_race';
+import Race from '@/domain/single_mode/Race';
+import Grade from '@/domain/single_mode/Grade';
+import Ground from '@/domain/single_mode/Ground';
 
 export default defineComponent({
   name: 'RaceActionListItem',
@@ -62,7 +64,7 @@ export default defineComponent({
       required: true,
     },
     race: {
-      type: SingleModeRace,
+      type: Race,
       required: true,
     },
     action: {
@@ -78,13 +80,13 @@ export default defineComponent({
   },
   setup: (props, ctx) => {
     const actionProxy = usePropVModel(ctx, props, 'action');
-    const stadiumText = (race: SingleModeRace): string => {
+    const stadiumText = (race: Race): string => {
       if (race.grade === Grade.NOT_WINNING) {
         return '...';
       }
       return race.stadium;
     };
-    const groundText = (race: SingleModeRace): string => {
+    const groundText = (race: Race): string => {
       if (race.grade === Grade.NOT_WINNING) {
         return '...';
       }
@@ -97,13 +99,13 @@ export default defineComponent({
           return Ground[race.ground];
       }
     };
-    const distanceText = (race: SingleModeRace): string => {
+    const distanceText = (race: Race): string => {
       if (race.grade === Grade.NOT_WINNING) {
         return '...';
       }
       return `${race.distance}m`;
     };
-    const gradeText = (race: SingleModeRace): string => {
+    const gradeText = (race: Race): string => {
       switch (race.grade) {
         case Grade.NOT_WINNING:
           return '未勝利戦';

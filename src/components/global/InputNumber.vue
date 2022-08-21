@@ -4,10 +4,10 @@
     v-model.lazy="valueString"
     class="text-center spin-button-none"
     type="number"
-    @focus="$event.target.select()"
-    @blur="$event.target.value = valueString"
-    @keyup.enter="$event.target.blur()"
-    @keyup.esc="$event.target.blur()"
+    @focus="($event.target as HTMLInputElement).select()"
+    @blur="($event.target as HTMLInputElement).value = valueString"
+    @keyup.enter="($event.target as HTMLInputElement).blur()"
+    @keyup.esc="($event.target as HTMLInputElement).blur()"
   />
 </template>
 

@@ -53,7 +53,7 @@ export default defineComponent({
     watch(
       lang,
       (v) => {
-        i18n.global.locale.value = v;
+        i18n.global.locale = v;
       },
       { immediate: true }
     );
