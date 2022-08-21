@@ -29,21 +29,21 @@
 </template>
 
 <script lang="ts">
-import { mdiCursorDefault, mdiCursorMove, mdiMinus, mdiPlus } from "@mdi/js";
-import * as d3 from "d3";
-import { round, sortBy } from "lodash-es";
-import type { PropType } from "vue";
-import { computed, defineComponent, ref, watch } from "vue";
-import useCleanup from "@/composables/useCleanup";
-import useElementSize from "@/composables/useElementSize";
-import type { Vector2 } from "@/composables/useLineSelect";
-import useLineSelect from "@/composables/useLineSelect";
-import { ALL_TRAINING_TYPE, TrainingType } from "@/constants";
-import type { ExpectedScore } from "@/plugin-generators/training";
-import distanceVector2 from "@/utils/distanceVector2";
+import { mdiCursorDefault, mdiCursorMove, mdiMinus, mdiPlus } from '@mdi/js';
+import * as d3 from 'd3';
+import { round, sortBy } from 'lodash-es';
+import type { PropType } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
+import useCleanup from '@/composables/useCleanup';
+import useElementSize from '@/composables/useElementSize';
+import type { Vector2 } from '@/composables/useLineSelect';
+import useLineSelect from '@/composables/useLineSelect';
+import { ALL_TRAINING_TYPE, TrainingType } from '@/constants';
+import type { ExpectedScore } from '@/plugin-generators/training';
+import distanceVector2 from '@/utils/distanceVector2';
 
 export default defineComponent({
-  name: "TrainingScoreChart",
+  name: 'TrainingScoreChart',
   props: {
     modelValue: {
       type: Array as PropType<ExpectedScore[]>,
@@ -51,11 +51,11 @@ export default defineComponent({
     },
   },
   emits: {
-    "update:modelValue": (v: ExpectedScore[]) => v != null,
+    'update:modelValue': (v: ExpectedScore[]) => v != null,
   },
   setup: (props, ctx) => {
     const svg = ref<SVGSVGElement>();
-    const tool = ref("default");
+    const tool = ref('default');
     const { width, height } = useElementSize(svg);
 
     const { addCleanup, cleanup } = useCleanup();
@@ -133,7 +133,7 @@ export default defineComponent({
         value: to[1],
       });
 
-      ctx.emit("update:modelValue", ret);
+      ctx.emit('update:modelValue', ret);
     };
 
     // const deleteValue = (type: TrainingType, point: Vector2): void => {
@@ -153,15 +153,15 @@ export default defineComponent({
       }
 
       const d3SVG = d3.select(svgValue);
-      const d3XAxis = d3SVG.append("g");
-      const d3YAxis = d3SVG.append("g");
-      const d3Lines = d3SVG.append("g");
-      const d3HoverPanel = d3SVG.append("g");
-      d3HoverPanel.append("circle").attr("r", 2.5).attr("opacity", 0.5);
-      const d3HoverText = d3HoverPanel.append("text");
-      const d3DotControl = d3SVG.append("g");
-      d3DotControl.append("circle").attr("r", 2.5);
-      d3DotControl.append("text").attr("y", -8).attr("text-anchor", "middle");
+      const d3XAxis = d3SVG.append('g');
+      const d3YAxis = d3SVG.append('g');
+      const d3Lines = d3SVG.append('g');
+      const d3HoverPanel = d3SVG.append('g');
+      d3HoverPanel.append('circle').attr('r', 2.5).attr('opacity', 0.5);
+      const d3HoverText = d3HoverPanel.append('text');
+      const d3DotControl = d3SVG.append('g');
+      d3DotControl.append('circle').attr('r', 2.5);
+      d3DotControl.append('text').attr('y', -8).attr('text-anchor', 'middle');
 
       const isPressing = ref(false);
       const handleMouseMove = (e: MouseEvent) => {
@@ -175,37 +175,37 @@ export default defineComponent({
         const p = selectedPoint.value;
         let targetPoint: Vector2 | undefined;
         if (p && distanceVector2(pointer, [x(p[0]), y(p[1])]) < 64) {
-          d3DotControl.attr("display", null);
-          d3HoverPanel.attr("display", "none");
+          d3DotControl.attr('display', null);
+          d3HoverPanel.attr('display', 'none');
           targetPoint = p;
-          svgValue.style.cursor = "move";
+          svgValue.style.cursor = 'move';
         } else {
-          d3DotControl.attr("display", "none");
-          d3HoverPanel.attr("display", null);
-          svgValue.style.cursor = "copy";
+          d3DotControl.attr('display', 'none');
+          d3HoverPanel.attr('display', null);
+          svgValue.style.cursor = 'copy';
         }
         if (s && isPressing.value) {
           updateValue(s.type, [xPoint, yPoint], targetPoint);
         }
-        d3HoverPanel.attr("transform", `translate(${x(xPoint)}, ${y(yPoint)})`);
+        d3HoverPanel.attr('transform', `translate(${x(xPoint)}, ${y(yPoint)})`);
       };
       d3SVG
-        .on("mouseenter", () => {
-          d3HoverPanel.attr("display", null);
+        .on('mouseenter', () => {
+          d3HoverPanel.attr('display', null);
         })
-        .on("mousemove", handleMouseMove)
-        .on("mouseleave", () => {
-          d3HoverPanel.attr("display", "none");
-          d3DotControl.attr("display", "none");
-          d3Lines.selectAll("path").attr("opacity", null);
+        .on('mousemove', handleMouseMove)
+        .on('mouseleave', () => {
+          d3HoverPanel.attr('display', 'none');
+          d3DotControl.attr('display', 'none');
+          d3Lines.selectAll('path').attr('opacity', null);
           isPressing.value = false;
         })
-        .on("mousedown", (e: MouseEvent) => {
+        .on('mousedown', (e: MouseEvent) => {
           e.preventDefault();
           isPressing.value = true;
           handleMouseMove(e);
         })
-        .on("mouseup", (e: MouseEvent) => {
+        .on('mouseup', (e: MouseEvent) => {
           e.preventDefault();
           isPressing.value = false;
         });
@@ -215,10 +215,10 @@ export default defineComponent({
           [width, height, xScale, yScale],
           ([w, h, x, y]) => {
             d3XAxis
-              .attr("transform", `translate(0, ${h - margin.bottom})`)
+              .attr('transform', `translate(0, ${h - margin.bottom})`)
               .call(d3.axisBottom(x).ticks(w / 80));
             d3YAxis
-              .attr("transform", `translate(${margin.left}, 0)`)
+              .attr('transform', `translate(${margin.left}, 0)`)
               .call(d3.axisLeft(y));
           },
           { immediate: true }
@@ -229,15 +229,15 @@ export default defineComponent({
           [series, xScale, yScale],
           ([s, x, y]) => {
             d3Lines
-              .selectAll("path")
+              .selectAll('path')
               .data(s)
-              .join("path")
-              .attr("stroke", (d) => lineColor(TrainingType[d.type]))
+              .join('path')
+              .attr('stroke', (d) => lineColor(TrainingType[d.type]))
               .datum((d) => d.values)
-              .attr("fill", "none")
-              .attr("stroke-width", "1.5")
+              .attr('fill', 'none')
+              .attr('stroke-width', '1.5')
               .attr(
-                "d",
+                'd',
                 d3
                   .line()
                   .x((d) => x(d[0]))
@@ -254,13 +254,13 @@ export default defineComponent({
             if (!(s && p)) {
               return;
             }
-            d3DotControl.attr("transform", `translate(${x(p[0])}, ${y(p[1])})`);
+            d3DotControl.attr('transform', `translate(${x(p[0])}, ${y(p[1])})`);
             d3DotControl
-              .select("text")
+              .select('text')
               .text(`${TrainingType[s.type]} ${p[0]} ${p[1]}`);
             d3Lines
-              .selectAll("path")
-              .attr("opacity", (d) => (d === s.values ? null : "0.5"));
+              .selectAll('path')
+              .attr('opacity', (d) => (d === s.values ? null : '0.5'));
             d3HoverText.text(
               `${TrainingType[s.type]} ${cursorPoint.value[0]} ${
                 cursorPoint.value[1]
@@ -272,8 +272,8 @@ export default defineComponent({
     });
 
     const toolButtonClass = (name: string) => ({
-      "form-button inline-block p-1 mx-px": true,
-      "bg-blue-500 text-white hover:bg-blue-400": tool.value === name,
+      'form-button inline-block p-1 mx-px': true,
+      'bg-blue-500 text-white hover:bg-blue-400': tool.value === name,
     });
     return { svg, width, height, series, tool, toolButtonClass };
   },

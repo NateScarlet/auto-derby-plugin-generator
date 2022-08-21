@@ -1,26 +1,26 @@
-import { mdiLoading } from "@mdi/js";
+import { mdiLoading } from '@mdi/js';
 // https://vitejs.dev/guide/assets.html#importing-asset-as-string
-import browserCheckFailHTML from "@/assets/browser-check-fail.html?raw";
-import initialLoadingHTML from "@/assets/initial-loading.html?raw";
+import browserCheckFailHTML from '@/assets/browser-check-fail.html?raw';
+import initialLoadingHTML from '@/assets/initial-loading.html?raw';
 
 export default function browserCheck(fn?: () => void): void {
   try {
     if (Object.entries === undefined) {
-      throw new Error("Object.entries is not supported");
+      throw new Error('Object.entries is not supported');
     }
     if (Array.prototype.flatMap === undefined) {
-      throw new Error("Array.prototype.flatMap is not supported");
+      throw new Error('Array.prototype.flatMap is not supported');
     }
     fn?.();
   } catch (err) {
-    const el = document.getElementById("app");
+    const el = document.getElementById('app');
     if (!el) {
-      throw new Error("missing app element");
+      throw new Error('missing app element');
     }
-    el.id = "browser-check-message"; // prevent load app
+    el.id = 'browser-check-message'; // prevent load app
     el.innerHTML = browserCheckFailHTML;
 
-    const pre = document.getElementById("error");
+    const pre = document.getElementById('error');
     if (pre) {
       pre.innerText = String(err);
     }
@@ -51,7 +51,7 @@ ${errText}
 `)}&labels=bug`;
 
     const anchors =
-      document.querySelectorAll<HTMLAnchorElement>("a.new-issue-link");
+      document.querySelectorAll<HTMLAnchorElement>('a.new-issue-link');
     for (let i = 0; i < anchors.length; i += 1) {
       const a = anchors.item(i);
       a.href = newIssueURL;
@@ -62,12 +62,12 @@ ${errText}
 }
 
 function createLoading() {
-  const el = document.createElement("div");
-  document.getElementById("app")?.append(el);
+  const el = document.createElement('div');
+  document.getElementById('app')?.append(el);
   el.innerHTML = initialLoadingHTML;
-  const path = document.getElementById("loading-icon-svg-path");
+  const path = document.getElementById('loading-icon-svg-path');
   if (path) {
-    path.setAttribute("d", mdiLoading);
+    path.setAttribute('d', mdiLoading);
   }
 }
 

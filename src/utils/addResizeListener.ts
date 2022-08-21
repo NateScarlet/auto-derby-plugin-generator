@@ -1,5 +1,5 @@
-import type { ResizeObserverEntry } from "@juggle/resize-observer";
-import { ResizeObserver } from "@juggle/resize-observer";
+import type { ResizeObserverEntry } from '@juggle/resize-observer';
+import { ResizeObserver } from '@juggle/resize-observer';
 
 export default function addResizeListener(
   el: Element,

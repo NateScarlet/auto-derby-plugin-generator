@@ -1,6 +1,6 @@
-import defineRoute from "@/utils/defineRoute";
+import defineRoute from '@/utils/defineRoute';
 
 export default defineRoute({
-  path: "training",
-  component: () => import("@/views/TrainingPlugin.vue"),
+  path: 'training',
+  component: () => import('@/views/TrainingPlugin.vue'),
 });

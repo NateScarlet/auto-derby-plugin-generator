@@ -1,8 +1,8 @@
-import type { Ref, UnwrapRef } from "vue";
-import { ref, watch } from "vue";
-import useCleanup from "@/composables/useCleanup";
+import type { Ref, UnwrapRef } from 'vue';
+import { ref, watch } from 'vue';
+import useCleanup from '@/composables/useCleanup';
 
-export type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
+export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 
 function useStorage<T>(
   storage: StorageLike,
@@ -29,8 +29,8 @@ function useStorage<T>(
     }
     load();
   };
-  window.addEventListener("storage", onStorage);
-  addCleanup(() => window.removeEventListener("storage", onStorage));
+  window.addEventListener('storage', onStorage);
+  addCleanup(() => window.removeEventListener('storage', onStorage));
   watch(
     ret,
     (v) => {

@@ -1,4 +1,3 @@
-
 export enum Ground {
   TURF = 1,
   DART = 2,

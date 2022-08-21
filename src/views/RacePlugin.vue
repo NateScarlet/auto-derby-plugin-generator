@@ -17,30 +17,30 @@
 </template>
 
 <script lang="ts">
-import { saveAs } from "file-saver";
-import { defineComponent, reactive } from "vue";
-import RaceActionInputVue from "@/components/RaceActionInput.vue";
-import RaceActionListVue from "@/components/RaceActionList.vue";
-import type { Action, RaceAction } from "@/plugin-generators/race";
-import generate from "@/plugin-generators/race";
+import { saveAs } from 'file-saver';
+import { defineComponent, reactive } from 'vue';
+import RaceActionInputVue from '@/components/RaceActionInput.vue';
+import RaceActionListVue from '@/components/RaceActionList.vue';
+import type { Action, RaceAction } from '@/plugin-generators/race';
+import generate from '@/plugin-generators/race';
 
 export default defineComponent({
-  name: "RacePlugin",
+  name: 'RacePlugin',
   components: {
     RaceActionListVue,
     RaceActionInputVue,
   },
   setup: () => {
     const formData = reactive({
-      name: "custom_race",
+      name: 'custom_race',
       raceActions: [] as RaceAction[],
-      defaultAction: "none" as Action,
+      defaultAction: 'none' as Action,
     });
 
     const save = () => {
       const body = generate(formData);
       saveAs(
-        new Blob([body], { type: "application/octet-stream" }),
+        new Blob([body], { type: 'application/octet-stream' }),
         `${formData.name}.py`
       );
     };

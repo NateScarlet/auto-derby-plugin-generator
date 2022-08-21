@@ -1,6 +1,6 @@
-import { sortBy } from "lodash-es";
+import { sortBy } from 'lodash-es';
 
-export type Action = "ban" | "less" | "none" | "more" | "pick";
+export type Action = 'ban' | 'less' | 'none' | 'more' | 'pick';
 
 export interface RaceAction {
   turn: number;
@@ -43,7 +43,7 @@ ${sortBy(
   .map(
     (i) => `    (${i.turn}, "${i.name}"): _ACTION_${i.action.toUpperCase()},`
   )
-  .join("\n")}
+  .join('\n')}
 }
 
 

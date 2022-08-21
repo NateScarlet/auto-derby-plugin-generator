@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-import useSingleModeTurn from "@/composables/useSingleModeTurn";
+import { computed, defineComponent } from 'vue';
+import useSingleModeTurn from '@/composables/useSingleModeTurn';
 
 export default defineComponent({
-  name: "SingleModeTurnWidget",
+  name: 'SingleModeTurnWidget',
   props: {
     value: {
       type: Number,

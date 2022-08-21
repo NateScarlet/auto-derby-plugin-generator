@@ -32,20 +32,20 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from "vue";
-import { defineComponent } from "vue";
+import type { PropType } from 'vue';
+import { defineComponent } from 'vue';
 import {
   mdiCancel,
   mdiShieldCheck,
   mdiThumbDown,
   mdiThumbsUpDown,
   mdiThumbUp,
-} from "@mdi/js";
-import type { Action } from "@/plugin-generators/race";
-import usePropVModel from "@/composables/usePropVModel";
+} from '@mdi/js';
+import type { Action } from '@/plugin-generators/race';
+import usePropVModel from '@/composables/usePropVModel';
 
 export default defineComponent({
-  name: "RaceActionInput",
+  name: 'RaceActionInput',
   props: {
     modelValue: {
       type: String as PropType<Action>,
@@ -53,12 +53,12 @@ export default defineComponent({
     },
   },
   setup: (props, ctx) => {
-    const actionProxy = usePropVModel(ctx, props, "modelValue");
+    const actionProxy = usePropVModel(ctx, props, 'modelValue');
     const labelClass = (action: string) => ({
-      "form-button inline-flex flex-center p-1 sm:px-4": true,
-      "bg-blue-400 text-white hover:bg-blue-300": actionProxy.value === action,
+      'form-button inline-flex flex-center p-1 sm:px-4': true,
+      'bg-blue-400 text-white hover:bg-blue-300': actionProxy.value === action,
     });
-    const svgClass = "fill-current h-6 lg:h-8";
+    const svgClass = 'fill-current h-6 lg:h-8';
     return {
       actionProxy,
       labelClass,

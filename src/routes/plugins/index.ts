@@ -1,9 +1,9 @@
-import defineRoute from "@/utils/defineRoute";
-import race from "./race";
-import training from "./training";
+import defineRoute from '@/utils/defineRoute';
+import race from './race';
+import training from './training';
 
 export default defineRoute({
-  path: "/plugins",
+  path: '/plugins',
   children: [race, training],
-  component: () => import("@/views/PluginView.vue")
+  component: () => import('@/views/PluginView.vue'),
 });

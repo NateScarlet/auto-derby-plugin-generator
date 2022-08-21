@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts">
-import { saveAs } from "file-saver";
-import { defineComponent, reactive } from "vue";
-import TrainingScoreChart from "@/components/TrainingScoreChart.vue";
-import type { Input } from "@/plugin-generators/training";
-import generate from "@/plugin-generators/training";
+import { saveAs } from 'file-saver';
+import { defineComponent, reactive } from 'vue';
+import TrainingScoreChart from '@/components/TrainingScoreChart.vue';
+import type { Input } from '@/plugin-generators/training';
+import generate from '@/plugin-generators/training';
 
 export default defineComponent({
-  name: "TrainingPlugin",
+  name: 'TrainingPlugin',
   components: {
     TrainingScoreChart,
   },
@@ -30,7 +30,7 @@ export default defineComponent({
 
     const save = () => {
       const body = generate(formData);
-      saveAs(new Blob([body], { type: "application/octet-stream" }), "tmp.py");
+      saveAs(new Blob([body], { type: 'application/octet-stream' }), 'tmp.py');
     };
     return {
       save,

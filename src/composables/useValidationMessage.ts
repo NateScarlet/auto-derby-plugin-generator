@@ -1,5 +1,5 @@
-import type { Ref } from "vue";
-import { watch, isReadonly, ref, computed } from "vue";
+import type { Ref } from 'vue';
+import { watch, isReadonly, ref, computed } from 'vue';
 
 export default function useValidationMessage(
   input: Ref<HTMLInputElement | undefined>,
@@ -12,7 +12,7 @@ export default function useValidationMessage(
     return input.value.reportValidity();
   };
   const writableValidationMessage = isReadonly(validationMessage)
-    ? ref("")
+    ? ref('')
     : validationMessage;
   const msgProxy = computed({
     get() {

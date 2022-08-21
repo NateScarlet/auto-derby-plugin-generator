@@ -1,5 +1,5 @@
-import type { VNode } from "vue";
-import { TransitionGroup, defineComponent, h, reactive } from "vue";
+import type { VNode } from 'vue';
+import { TransitionGroup, defineComponent, h, reactive } from 'vue';
 
 const listData = reactive({
   messages: [] as {
@@ -12,7 +12,7 @@ export const MessageList = defineComponent<
   Record<string, unknown>,
   typeof listData
 >({
-  name: "MessageList",
+  name: 'MessageList',
   data() {
     return listData;
   },
@@ -20,14 +20,14 @@ export const MessageList = defineComponent<
     return h(
       TransitionGroup,
       {
-        class: "fixed bottom-0 right-0 flex flex-col-reverse items-end",
+        class: 'fixed bottom-0 right-0 flex flex-col-reverse items-end',
         appear: true,
-        tag: "ol",
-        moveClass: "transition ease-in-out duration-200",
-        enterActiveClass: "transition ease-in-out duration-300",
-        enterFromClass: "opacity-0 transform translate-x-full",
-        leaveActiveClass: "transition ease-in-out duration-1000",
-        leaveToClass: "opacity-0",
+        tag: 'ol',
+        moveClass: 'transition ease-in-out duration-200',
+        enterActiveClass: 'transition ease-in-out duration-300',
+        enterFromClass: 'opacity-0 transform translate-x-full',
+        leaveActiveClass: 'transition ease-in-out duration-1000',
+        leaveToClass: 'opacity-0',
       },
       () =>
         this.messages.map((i) => {
@@ -63,9 +63,9 @@ export function message(render: () => VNode): () => void {
 export function info(text: string, duration = 3000 + 200 * text.length): void {
   const close = message(() =>
     h(
-      "li",
+      'li',
       {
-        class: "p-3 rounded-sm w-64 mx-2 my-1 bg-gray-100 text-black break-all",
+        class: 'p-3 rounded-sm w-64 mx-2 my-1 bg-gray-100 text-black break-all',
       },
       text
     )
@@ -76,9 +76,9 @@ export function info(text: string, duration = 3000 + 200 * text.length): void {
 export function error(text: string, duration = 3000 + 200 * text.length): void {
   const close = message(() =>
     h(
-      "li",
+      'li',
       {
-        class: "p-3 rounded-sm w-64 mx-2 my-1 bg-red-700 text-white break-all",
+        class: 'p-3 rounded-sm w-64 mx-2 my-1 bg-red-700 text-white break-all',
       },
       text
     )

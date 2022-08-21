@@ -41,17 +41,17 @@ import {
   mdiThumbDown,
   mdiThumbsUpDown,
   mdiThumbUp,
-} from "@mdi/js";
-import type { PropType } from "vue";
-import { defineComponent } from "vue";
-import RaceActionInputVue from "@/components/RaceActionInput.vue";
-import SingleModeTurnWidgetVue from "@/components/SingleModeTurnWidget.vue";
-import usePropVModel from "@/composables/usePropVModel";
-import type { Action } from "@/plugin-generators/race";
-import SingleModeRace, { Grade, Ground } from "@/single_mode_race";
+} from '@mdi/js';
+import type { PropType } from 'vue';
+import { defineComponent } from 'vue';
+import RaceActionInputVue from '@/components/RaceActionInput.vue';
+import SingleModeTurnWidgetVue from '@/components/SingleModeTurnWidget.vue';
+import usePropVModel from '@/composables/usePropVModel';
+import type { Action } from '@/plugin-generators/race';
+import SingleModeRace, { Grade, Ground } from '@/single_mode_race';
 
 export default defineComponent({
-  name: "RaceActionListItem",
+  name: 'RaceActionListItem',
   components: {
     SingleModeTurnWidgetVue,
     RaceActionInputVue,
@@ -74,41 +74,41 @@ export default defineComponent({
     },
   },
   emits: {
-    "update:action": (v: Action) => v != null,
+    'update:action': (v: Action) => v != null,
   },
   setup: (props, ctx) => {
-    const actionProxy = usePropVModel(ctx, props, "action");
+    const actionProxy = usePropVModel(ctx, props, 'action');
     const stadiumText = (race: SingleModeRace): string => {
       if (race.grade === Grade.NOT_WINNING) {
-        return "...";
+        return '...';
       }
       return race.stadium;
     };
     const groundText = (race: SingleModeRace): string => {
       if (race.grade === Grade.NOT_WINNING) {
-        return "...";
+        return '...';
       }
       switch (race.ground) {
         case Ground.TURF:
-          return "芝";
+          return '芝';
         case Ground.DART:
-          return "ダート";
+          return 'ダート';
         default:
           return Ground[race.ground];
       }
     };
     const distanceText = (race: SingleModeRace): string => {
       if (race.grade === Grade.NOT_WINNING) {
-        return "...";
+        return '...';
       }
       return `${race.distance}m`;
     };
     const gradeText = (race: SingleModeRace): string => {
       switch (race.grade) {
         case Grade.NOT_WINNING:
-          return "未勝利戦";
+          return '未勝利戦';
         case Grade.PRE_OP:
-          return "Pre-OP";
+          return 'Pre-OP';
         default:
           return Grade[race.grade];
       }

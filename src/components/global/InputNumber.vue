@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import usePropVModel from "@/composables/usePropVModel";
+import { computed, defineComponent, ref } from 'vue';
+import usePropVModel from '@/composables/usePropVModel';
 
 export default defineComponent({
-  name: "InputNumber",
+  name: 'InputNumber',
   props: {
     modelValue: {
       type: Number,
@@ -37,8 +37,8 @@ export default defineComponent({
   },
   setup: (props, ctx) => {
     const el = ref<HTMLInputElement>();
-    const valueProxy = usePropVModel(ctx, props, "modelValue", (v) => {
-      if (typeof v !== "number" || !Number.isFinite(v)) {
+    const valueProxy = usePropVModel(ctx, props, 'modelValue', (v) => {
+      if (typeof v !== 'number' || !Number.isFinite(v)) {
         return props.default || props.modelValue;
       }
       if (props.min != null && v < props.min) {
@@ -52,7 +52,7 @@ export default defineComponent({
     const valueString = computed({
       get() {
         if (valueProxy.value == null) {
-          return "";
+          return '';
         }
         return valueProxy.value.toString();
       },

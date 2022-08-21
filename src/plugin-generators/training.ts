@@ -1,4 +1,4 @@
-import type { TrainingType } from "@/constants";
+import type { TrainingType } from '@/constants';
 
 export interface ExpectedScore {
   turn: number;

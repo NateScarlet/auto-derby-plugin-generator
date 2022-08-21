@@ -1,9 +1,7 @@
 import type { Ref } from 'vue';
 import { computed, ref, watch } from 'vue';
 
-export default function useSelect<T>(
-  values: Ref<T[]>
-): {
+export default function useSelect<T>(values: Ref<T[]>): {
   selected: Ref<T | undefined>;
   selectedIndex: Ref<number>;
 } {

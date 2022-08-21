@@ -1,12 +1,12 @@
-import { mdiUpdate } from "@mdi/js";
-import { registerSW } from "virtual:pwa-register";
-import { h } from "vue";
-import { message } from "@/message";
-import isWorkboxCacheUpdatedEvent from "@/utils/isWorkboxBroadcastUpdateEvent";
-import events from "@/events";
+import { mdiUpdate } from '@mdi/js';
+import { registerSW } from 'virtual:pwa-register';
+import { h } from 'vue';
+import { message } from '@/message';
+import isWorkboxCacheUpdatedEvent from '@/utils/isWorkboxBroadcastUpdateEvent';
+import events from '@/events';
 
 export default function install(): void {
-  navigator.serviceWorker.addEventListener("message", async (event) => {
+  navigator.serviceWorker.addEventListener('message', async (event) => {
     if (isWorkboxCacheUpdatedEvent(event)) {
       events.workboxCacheUpdate.dispatchEvent(event);
     }
@@ -15,23 +15,23 @@ export default function install(): void {
     onNeedRefresh() {
       message(() =>
         h(
-          "li",
+          'li',
           {
             class:
-              "rounded-sm w-64 mx-2 my-1 bg-gray-100 text-black break-all flex items-center",
+              'rounded-sm w-64 mx-2 my-1 bg-gray-100 text-black break-all flex items-center',
           },
           [
-            h("p", { class: "m-2 flex-auto" }, "New version available"),
+            h('p', { class: 'm-2 flex-auto' }, 'New version available'),
             h(
-              "button",
+              'button',
               {
-                class: "form-button inline-flex flex-center",
+                class: 'form-button inline-flex flex-center',
                 onClick: () => updateSW(),
               },
               h(
-                "svg",
-                { viewBox: "0 0 24 24", class: "fill-current h-6" },
-                h("path", { d: mdiUpdate })
+                'svg',
+                { viewBox: '0 0 24 24', class: 'fill-current h-6' },
+                h('path', { d: mdiUpdate })
               )
             ),
           ]

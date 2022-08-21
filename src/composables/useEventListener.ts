@@ -7,29 +7,29 @@ export interface EventTarget<Args extends unknown[]> {
   removeEventListener(...args: Args): void;
 }
 
-export function useEventListener<K extends keyof WindowEventMap>(
+function useEventListener<K extends keyof WindowEventMap>(
   target: Ref<Window | undefined>,
   type: K,
   listener: (this: Window, ev: WindowEventMap[K]) => unknown,
   options?: boolean | EventListenerOptions
 ): void;
-export function useEventListener<K extends keyof DocumentEventMap>(
+function useEventListener<K extends keyof DocumentEventMap>(
   target: Ref<Document | undefined>,
   type: K,
   listener: (this: Document, ev: DocumentEventMap[K]) => unknown,
   options?: boolean | EventListenerOptions
 ): void;
-export function useEventListener<K extends keyof HTMLElementEventMap>(
+function useEventListener<K extends keyof HTMLElementEventMap>(
   target: Ref<HTMLElement | undefined>,
   type: K,
   listener: (this: Document, ev: HTMLElementEventMap[K]) => unknown,
   options?: boolean | EventListenerOptions
 ): void;
-export function useEventListener<Args extends unknown[]>(
+function useEventListener<Args extends unknown[]>(
   target: Ref<EventTarget<Args> | undefined>,
   ...args: Args
 ): void;
-export function useEventListener<Args extends unknown[]>(
+function useEventListener<Args extends unknown[]>(
   target: Ref<EventTarget<Args> | undefined>,
   ...args: Args
 ): void {

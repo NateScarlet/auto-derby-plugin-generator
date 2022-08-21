@@ -10,17 +10,17 @@ export default function useSingleModeTurn(turn: number): {
   const yearText = (() => {
     switch (year) {
       case 1:
-        return "ジュニア級";
+        return 'ジュニア級';
       case 2:
-        return "クラシック級";
+        return 'クラシック級';
       case 3:
-        return "シニア級";
+        return 'シニア級';
       default:
         return `Year ${year}`;
     }
   })();
   const half = (turn % 2) + 1;
-  const halfText = half === 1 ? "前半" : "後半";
+  const halfText = half === 1 ? '前半' : '後半';
   const month = (((turn - (half - 1)) / 2) % 12) + 1;
   const monthText = `${month} 月`;
 

@@ -1,10 +1,10 @@
-import type { Ref } from "vue";
-import { computed, ref } from "vue";
-import usePromise from "@/composables/usePromise";
-import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
-import SingleModeRace from "@/single_mode_race";
-import isNonNull from "@/utils/isNonNull";
-import events from "@/events";
+import type { Ref } from 'vue';
+import { computed, ref } from 'vue';
+import usePromise from '@/composables/usePromise';
+import { SINGLE_MODE_RACE_DATA_URL } from '@/settings';
+import SingleModeRace from '@/single_mode_race';
+import isNonNull from '@/utils/isNonNull';
+import events from '@/events';
 
 const version = ref(0);
 
@@ -18,7 +18,7 @@ const races = usePromise(
     const _ = version.value; // refetch on version change
     const resp = await fetch(SINGLE_MODE_RACE_DATA_URL);
     return (await resp.text())
-      .split("\n")
+      .split('\n')
       .map((i) => {
         try {
           return new SingleModeRace(JSON.parse(i));

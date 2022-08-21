@@ -2,7 +2,7 @@
   <ol class="container m-auto">
     <li class="text-blue-400">
       <router-link to="/plugins/race">
-        {{ t("plugin-type.race") }}
+        {{ t('plugin-type.race') }}
       </router-link>
     </li>
     <!-- <li class="text-blue-400">
@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useI18n } from "@/plugins/i18n";
+import { defineComponent } from 'vue';
+import { useI18n } from '@/plugins/i18n';
 
 export default defineComponent({
-  name: "IndexView",
+  name: 'IndexView',
   setup() {
     return {
       ...useI18n(),

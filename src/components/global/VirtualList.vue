@@ -22,15 +22,15 @@
 </template>
 
 <script lang="ts">
-import type { PropType} from "vue";
-import { computed, defineComponent, reactive, ref, watch } from "vue";
+import type { PropType } from 'vue';
+import { computed, defineComponent, reactive, ref, watch } from 'vue';
 
 export default defineComponent({
-  name: "VirtualList",
+  name: 'VirtualList',
   props: {
     is: {
       type: String,
-      default: "div",
+      default: 'div',
     },
     values: {
       type: Array as PropType<unknown[]>,
@@ -54,12 +54,12 @@ export default defineComponent({
     const itemCount = computed(() => props.totalCount ?? props.values.length);
     const containerStyle = computed(() => ({
       height: `${props.itemHeight * Math.min(props.size, itemCount.value)}px`,
-      overflowY: "auto",
+      overflowY: 'auto',
     }));
     const topIndex = ref(0);
     const viewportStyle = reactive({
-      paddingTop: "0",
-      paddingBottom: "0",
+      paddingTop: '0',
+      paddingBottom: '0',
     });
     const visibleItems = computed(() =>
       props.values
@@ -71,7 +71,7 @@ export default defineComponent({
           attrs: {
             style: {
               height: `${props.itemHeight}px`,
-              overflow: "hidden",
+              overflow: 'hidden',
             },
           },
         }))

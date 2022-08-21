@@ -1,5 +1,9 @@
 <template>
-  <link crossorigin="anonymous" rel="prefetch" :href="SINGLE_MODE_RACE_DATA_URL" />
+  <link
+    crossorigin="anonymous"
+    rel="prefetch"
+    :href="SINGLE_MODE_RACE_DATA_URL"
+  />
   <nav class="bg-gray-200 text-right">
     <template v-if="route.path != '/'">
       <router-link to="/" class="float-left">
@@ -29,22 +33,22 @@
 </template>
 
 <script lang="ts">
-import { mdiArrowLeft } from "@mdi/js";
-import { defineComponent, watch } from "vue";
-import { useRoute } from "vue-router";
-import useStorage from "@/composables/useStorage";
-import { MessageList } from "@/message";
-import i18n from "@/plugins/i18n";
-import { SINGLE_MODE_RACE_DATA_URL } from "@/settings";
+import { mdiArrowLeft } from '@mdi/js';
+import { defineComponent, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import useStorage from '@/composables/useStorage';
+import { MessageList } from '@/message';
+import i18n from '@/plugins/i18n';
+import { SINGLE_MODE_RACE_DATA_URL } from '@/settings';
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     MessageList,
   },
   setup() {
     const route = useRoute();
-    const lang = useStorage(localStorage, "lang", i18n.global.locale);
+    const lang = useStorage(localStorage, 'lang', i18n.global.locale);
     watch(
       lang,
       (v) => {

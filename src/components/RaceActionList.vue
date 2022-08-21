@@ -98,17 +98,17 @@
 </template>
 
 <script lang="ts">
-import { uniqBy } from "lodash-es";
-import type { PropType } from "vue";
-import { computed, defineComponent, reactive } from "vue";
-import RaceActionListItemVue from "@/components/RaceActionListItem.vue";
-import usePropVModel from "@/composables/usePropVModel";
-import useSingleModeRaces from "@/composables/useSingleModeRaces";
-import type { Action, RaceAction } from "@/plugin-generators/race";
-import { Grade, Ground } from "@/single_mode_race";
+import { uniqBy } from 'lodash-es';
+import type { PropType } from 'vue';
+import { computed, defineComponent, reactive } from 'vue';
+import RaceActionListItemVue from '@/components/RaceActionListItem.vue';
+import usePropVModel from '@/composables/usePropVModel';
+import useSingleModeRaces from '@/composables/useSingleModeRaces';
+import type { Action, RaceAction } from '@/plugin-generators/race';
+import { Grade, Ground } from '@/single_mode_race';
 
 export default defineComponent({
-  name: "RaceActionList",
+  name: 'RaceActionList',
   components: {
     RaceActionListItemVue,
   },
@@ -119,17 +119,17 @@ export default defineComponent({
     },
     defaultAction: {
       type: String as PropType<Action>,
-      default: "none",
+      default: 'none',
     },
   },
   emits: {
-    "update:modelValue": null,
+    'update:modelValue': null,
   },
   setup: (props, ctx) => {
-    const modelValueProxy = usePropVModel(ctx, props, "modelValue");
+    const modelValueProxy = usePropVModel(ctx, props, 'modelValue');
     const races = useSingleModeRaces();
     const formData = reactive({
-      query: "",
+      query: '',
       modifiedOnly: false,
       includeTurf: true,
       includeDart: true,
@@ -158,7 +158,7 @@ export default defineComponent({
         if (
           formData.query.trim() &&
           !formData.query
-            .split(" ")
+            .split(' ')
             .filter((word) => word.trim())
             .some(
               (word) =>
