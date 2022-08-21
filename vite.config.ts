@@ -7,8 +7,8 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import { defineConfig, Plugin, build } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import * as cheerio from 'cheerio';
-import * as babel from '@babel/core';
+import * as cheerio from "cheerio";
+import * as babel from "@babel/core";
 
 function shell(command: string): string {
   return execSync(command).toString().trimEnd();
@@ -90,6 +90,20 @@ export default defineConfig({
       filename: "sw.ts",
       strategies: "injectManifest",
       includeAssets: ["/favicon.ico"],
+      injectManifest: {
+        // include all files in manifest
+        maximumFileSizeToCacheInBytes: 128 << 20,
+        // then remove unwanted files by transform
+        // https://github.com/GoogleChrome/workbox/issues/2653
+        manifestTransforms: [
+          // exclude legacy files
+          (manifestEntries) => ({
+            manifest: manifestEntries.filter(
+              (i) => !/^.+-legacy.[a-f0-9]+.js$/.test(i.url)
+            ),
+          }),
+        ],
+      },
       manifest: {
         name: "auto-derby plugin generator",
         short_name: "auto-derby plugin generator",
