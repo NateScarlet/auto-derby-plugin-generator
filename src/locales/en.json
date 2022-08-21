@@ -1,6 +1,7 @@
 {
-    "plugin-type": {
-        "training": "Training",
-        "race": "Race"
-    }
+   "welcome": {
+    "app-name": "auto-derby plugin generator",
+    "start": "Start",
+    "generate-race-plugin": "Generate Race Plugin"
+  }
 }

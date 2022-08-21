@@ -4,7 +4,7 @@
     rel="prefetch"
     :href="SINGLE_MODE_RACE_DATA_URL"
   />
-  <nav class="bg-gray-200 text-right">
+  <nav class="bg-gray-200 flex items-center gap-2">
     <template v-if="route.path != '/'">
       <router-link to="/" class="float-left">
         <svg class="fill-current h-8" viewBox="0 0 24 24">
@@ -12,6 +12,7 @@
         </svg>
       </router-link>
     </template>
+    <div class="flex-auto"></div>
     <span> {{ version }} </span>
     <a
       href="https://github.com/NateScarlet/auto-derby-plugin-generator"

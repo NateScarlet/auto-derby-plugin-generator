@@ -37,7 +37,7 @@ button:focus,
 }
 
 .form-checkbox,
-input[type="checkbox"] {
+input[type='checkbox'] {
   &:disabled {
     @apply cursor-not-allowed;
     @apply border-gray-300;
@@ -154,6 +154,10 @@ input[type="checkbox"] {
   }
 }
 
+.ui-link {
+  @apply underline text-blue-400 hover:text-blue-400 hover:underline cursor-pointer;
+}
+
 /* purgecss end ignore */
 
 @tailwind utilities;
@@ -178,7 +182,7 @@ input[type="checkbox"] {
       margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
 
-    &[type="number"] {
+    &[type='number'] {
       -moz-appearance: textfield; /* Firefox */
     }
   }

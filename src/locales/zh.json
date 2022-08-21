@@ -1,6 +1,7 @@
 {
-    "plugin-type": {
-        "training": "训练",
-        "race": "比赛"
-    }
+  "welcome": {
+    "app-name": "auto-derby 插件生成器",
+    "start": "开始",
+    "generate-race-plugin": "生成赛程插件"
+  }
 }

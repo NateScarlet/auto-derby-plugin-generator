@@ -1,6 +1,9 @@
-import index from './index-view';
+import welcome from '@/routes/welcome';
+import type { AppRoute } from '@/utils/defineRoute';
 import plugins from './plugins';
 
-const routes = [index, plugins];
+function defineRoutes(v: AppRoute[]) {
+  return v;
+}
 
-export default routes;
+export default defineRoutes([welcome, plugins]);
