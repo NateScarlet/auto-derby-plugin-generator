@@ -1,7 +1,14 @@
 {
-   "welcome": {
+  "welcome": {
     "app-name": "auto-derby plugin generator",
     "start": "Start",
     "generate-race-plugin": "Generate Race Plugin"
+  },
+  "plugin": {
+    "name": "Name",
+    "generate": "Generate"
+  },
+  "race-plugin": {
+    "default-strategy": "Default Strategy"
   }
 }

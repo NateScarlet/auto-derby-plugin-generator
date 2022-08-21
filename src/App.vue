@@ -29,7 +29,7 @@
       ]"
     />
   </nav>
-  <router-view />
+  <RouterView />
   <MessageList />
 </template>
 

@@ -1,41 +1,55 @@
-import { debounce } from 'lodash-es';
 import type { Ref } from 'vue';
 import { ref, watch } from 'vue';
 import addResizeListener from '@/utils/addResizeListener';
 import useCleanup from '@/composables/useCleanup';
 
-export default function useElementSize(el: Ref<Element | undefined>): {
-  width: Ref<number>;
-  height: Ref<number>;
+export default function useElementSize(el: Ref<Element | null | undefined>): {
+  borderBoxWidth: Ref<number>;
+  borderBoxHeight: Ref<number>;
+  contentBoxWidth: Ref<number>;
+  contentBoxHeight: Ref<number>;
 } {
+  const borderBoxWidth = ref(0);
+  const borderBoxHeight = ref(0);
+  const contentBoxWidth = ref(0);
+  const contentBoxHeight = ref(0);
+
+  const update = () => {
+    const { value } = el;
+    if (!value) {
+      return;
+    }
+    const bBox = value.getBoundingClientRect();
+    borderBoxWidth.value = bBox.width;
+    borderBoxHeight.value = bBox.height;
+    contentBoxWidth.value = value.clientWidth;
+    contentBoxHeight.value = value.clientHeight;
+  };
+  update();
+
   const { addCleanup, cleanup } = useCleanup();
 
-  const height = ref(0);
-  const width = ref(0);
   watch(
     el,
-    (n) => {
+    (elv) => {
       cleanup();
-      if (!n) {
+      if (!elv) {
         return;
       }
-      width.value = n.clientWidth;
-      height.value = n.clientHeight;
-      const stop = addResizeListener(
-        n,
-        // use debounce to avoid infinite update loop.
-        debounce((e) => {
-          width.value = e.contentRect.width;
-          height.value = e.contentRect.height;
-        }, 100)
+      addCleanup(
+        // avoid forced reflow.
+        addResizeListener(elv, () => {
+          requestAnimationFrame(update);
+        })
       );
-      addCleanup(stop);
     },
     { immediate: true }
   );
 
   return {
-    width,
-    height,
+    borderBoxHeight,
+    borderBoxWidth,
+    contentBoxHeight,
+    contentBoxWidth,
   };
 }

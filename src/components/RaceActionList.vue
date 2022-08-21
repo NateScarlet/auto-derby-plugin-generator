@@ -1,100 +1,108 @@
 <template>
-  <div class="flex flex-wrap items-center space-x-2">
-    <input
-      v-model="formData.query"
-      type="search"
-      class="form-input"
-      placeholder="Search race or stadium name"
-    />
-    <div class="inline-flex flex-col">
-      <label>
-        ダート
-        <input
-          v-model="formData.includeDart"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        芝
-        <input
-          v-model="formData.includeTurf"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-    </div>
-    <div class="inline-flex flex-wrap w-48 space-x-2">
-      <label>
-        G1
-        <input
-          v-model="formData.includeG1"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        G2
-        <input
-          v-model="formData.includeG2"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        G3
-        <input
-          v-model="formData.includeG3"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        Pre-OP
-        <input
-          v-model="formData.includePreOP"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        OP
-        <input
-          v-model="formData.includeOP"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-      <label>
-        未勝利戦
-        <input
-          v-model="formData.includeNotWinning"
-          class="form-checkbox border"
-          type="checkbox"
-        />
-      </label>
-    </div>
-    <label>
-      modified ({{ modelValue.length }})
+  <div class="flex flex-col overflow-hidden">
+    <div class="flex-none flex flex-wrap items-center space-x-2">
       <input
-        v-model="formData.modifiedOnly"
-        class="form-checkbox border"
-        type="checkbox"
+        v-model="formData.query"
+        type="search"
+        class="form-input"
+        placeholder="Search race or stadium name"
       />
-    </label>
+      <div class="inline-flex flex-col">
+        <label>
+          ダート
+          <input
+            v-model="formData.includeDart"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          芝
+          <input
+            v-model="formData.includeTurf"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+      </div>
+      <div class="inline-flex flex-wrap w-48 space-x-2">
+        <label>
+          G1
+          <input
+            v-model="formData.includeG1"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          G2
+          <input
+            v-model="formData.includeG2"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          G3
+          <input
+            v-model="formData.includeG3"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          Pre-OP
+          <input
+            v-model="formData.includePreOP"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          OP
+          <input
+            v-model="formData.includeOP"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+        <label>
+          未勝利戦
+          <input
+            v-model="formData.includeNotWinning"
+            class="form-checkbox border"
+            type="checkbox"
+          />
+        </label>
+      </div>
+      <label>
+        modified ({{ modelValue.length }})
+        <input
+          v-model="formData.modifiedOnly"
+          class="form-checkbox border"
+          type="checkbox"
+        />
+      </label>
+    </div>
+    <VirtualList
+      is="ol"
+      class="flex-auto"
+      :values="listData"
+      :item-height="64"
+      :size="8"
+    >
+      <template #default="{ value: i, attrs, index }">
+        <RaceActionListItemVue
+          v-bind="attrs"
+          :turn="i.turn"
+          :race="i.race"
+          :hide-date="i.turn === listData[index - 1]?.turn"
+          :action="i.action"
+          @update:action="i.handleUpdateAction"
+        />
+      </template>
+    </VirtualList>
   </div>
-  <VirtualList is="ol" :values="listData" :item-height="64" :size="8">
-    <template #default="{ value: i, attrs, index }">
-      <RaceActionListItemVue
-        v-bind="attrs"
-        :turn="i.turn"
-        :race="i.race"
-        :hide-date="i.turn === listData[index - 1]?.turn"
-        :action="i.action"
-        @update:action="i.handleUpdateAction"
-      />
-    </template>
-  </VirtualList>
 </template>
 
 <script lang="ts">

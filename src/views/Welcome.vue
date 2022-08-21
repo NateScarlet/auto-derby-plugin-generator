@@ -8,7 +8,7 @@
       </h1>
       <div class="text-gray-500"></div>
     </div>
-    <div class="flex w-full">
+    <div class="flex w-full min-h-64">
       <section>
         <h1 class="text-2xl text-gray-500">
           <i18n-t keypath="welcome.start"></i18n-t>

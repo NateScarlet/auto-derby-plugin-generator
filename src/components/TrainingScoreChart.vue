@@ -56,7 +56,8 @@ export default defineComponent({
   setup: (props, ctx) => {
     const svg = ref<SVGSVGElement>();
     const tool = ref('default');
-    const { width, height } = useElementSize(svg);
+    const { borderBoxWidth: width, borderBoxHeight: height } =
+      useElementSize(svg);
 
     const { addCleanup, cleanup } = useCleanup();
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };

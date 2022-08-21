@@ -3,5 +3,12 @@
     "app-name": "auto-derby 插件生成器",
     "start": "开始",
     "generate-race-plugin": "生成赛程插件"
+  },
+  "plugin": {
+    "name": "名称",
+    "generate": "生成"
+  },
+  "race-plugin": {
+    "default-strategy": "默认策略"
   }
 }

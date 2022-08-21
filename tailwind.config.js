@@ -8,7 +8,7 @@ function inlineSVG(svg) {
 
 module.exports = {
   important: '#h',
-  content: ['src/**/*.{vue,ts}', 'public/**/*.html'],
+  content: ['src/**/*.{vue,ts}', 'index.html', 'public/**/*.html'],
   darkMode: false,
   theme: {
     extend: {
