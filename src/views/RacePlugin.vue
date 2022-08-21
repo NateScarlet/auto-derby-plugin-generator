@@ -1,19 +1,21 @@
 <template>
   <form
-    class="flex-auto overflow-hidden flex flex-col"
+    class="flex-auto overflow-hidden flex flex-col max-w-xl"
     action="javascript:void(0)"
     @submit="save()"
   >
     <RaceActionListVue
       v-model="formData.raceActions"
-      class="flex-auto overflow-hidden"
+      class="flex-auto"
       :default-action="formData.defaultAction"
     />
     <div class="flex mt-1">
       <span class="flex-auto">
         <i18n-t keypath="race-plugin.default-strategy"></i18n-t>
       </span>
-      <RaceActionInputVue v-model="formData.defaultAction" />
+      <div class="max-w-xl">
+        <RaceActionInputVue v-model="formData.defaultAction" />
+      </div>
     </div>
     <div class="flex items-center my-1">
       <label class="flex-auto flex items-center">

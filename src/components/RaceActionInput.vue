@@ -55,10 +55,10 @@ export default defineComponent({
   setup: (props, ctx) => {
     const actionProxy = usePropVModel(ctx, props, 'modelValue');
     const labelClass = (action: string) => ({
-      'form-button inline-flex flex-center p-1 sm:px-4': true,
+      'form-button inline-flex flex-center p-px h-8 flex-auto': true,
       'bg-blue-400 text-white hover:bg-blue-300': actionProxy.value === action,
     });
-    const svgClass = 'fill-current h-6 lg:h-8';
+    const svgClass = 'fill-current h-6 py-px';
     return {
       actionProxy,
       labelClass,

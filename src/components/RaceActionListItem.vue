@@ -1,33 +1,40 @@
 <template>
-  <li class="mb-1">
+  <li class="flex max-w-2xl m-1">
     <div
-      class="text-sm font-bold text-center border-t-2"
+      class="text-sm text-center w-24 flex-none hidden sm:flex my-2 flex-center"
       :class="{ invisible: hideDate }"
     >
-      <SingleModeTurnWidgetVue :value="turn" />
+      <SingleModeTurnBlock :value="turn" />
     </div>
-    <div class="flex">
-      <div class="flex-auto">
-        <div class="text-xs sm:text-sm text-gray-600 space-x-2">
-          <span>
-            {{ stadiumText(race) }}
-          </span>
-          <span>
-            {{ gradeText(race) }}
-          </span>
-          <span>
-            {{ groundText(race) }}
-          </span>
-          <span>
-            {{ distanceText(race) }}
-          </span>
-          <span> +{{ race.fanCounts[0] }}人 </span>
-        </div>
-        <div>
+    <div
+      class="w-full rounded border-2 p-1 border-gray-200 flex flex-col justify-between max-w-lg"
+    >
+      <div>
+        <span class="font-bold text-lg">
           {{ race.name }}
-        </div>
+        </span>
+        <span class="float-right text-sm sm:hidden text-gray-500">
+          <SingleModeTurnWidgetVue :value="turn" />
+        </span>
       </div>
-      <div class="flex-none">
+      <hr class="border-t border-gray-300" />
+      <div class="text-xs sm:text-sm text-gray-600 space-x-2">
+        <span>
+          {{ stadiumText(race) }}
+        </span>
+        <span>
+          {{ gradeText(race) }}
+        </span>
+        <span>
+          {{ groundText(race) }}
+        </span>
+        <span>
+          {{ distanceText(race) }}
+        </span>
+        <span> +{{ race.fanCounts[0] }}人 </span>
+      </div>
+
+      <div class="flex w-full">
         <RaceActionInputVue v-model="actionProxy" />
       </div>
     </div>
@@ -35,15 +42,7 @@
 </template>
 
 <script lang="ts">
-import {
-  mdiCancel,
-  mdiShieldCheck,
-  mdiThumbDown,
-  mdiThumbsUpDown,
-  mdiThumbUp,
-} from '@mdi/js';
 import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
 import RaceActionInputVue from '@/components/RaceActionInput.vue';
 import SingleModeTurnWidgetVue from '@/components/SingleModeTurnWidget.vue';
 import usePropVModel from '@/composables/usePropVModel';
@@ -51,87 +50,65 @@ import type { Action } from '@/plugin-generators/race';
 import Race from '@/domain/single_mode/Race';
 import Grade from '@/domain/single_mode/Grade';
 import Ground from '@/domain/single_mode/Ground';
+import SingleModeTurnBlock from '@/components/SingleModeTurnBlock.vue';
+</script>
 
-export default defineComponent({
-  name: 'RaceActionListItem',
-  components: {
-    SingleModeTurnWidgetVue,
-    RaceActionInputVue,
+<script setup lang="ts">
+const props = defineProps({
+  turn: {
+    type: Number,
+    required: true,
   },
-  props: {
-    turn: {
-      type: Number,
-      required: true,
-    },
-    race: {
-      type: Race,
-      required: true,
-    },
-    action: {
-      type: String as PropType<Action>,
-      required: true,
-    },
-    hideDate: {
-      type: Boolean,
-    },
+  race: {
+    type: Race,
+    required: true,
   },
-  emits: {
-    'update:action': (v: Action) => v != null,
+  action: {
+    type: String as PropType<Action>,
+    required: true,
   },
-  setup: (props, ctx) => {
-    const actionProxy = usePropVModel(ctx, props, 'action');
-    const stadiumText = (race: Race): string => {
-      if (race.grade === Grade.NOT_WINNING) {
-        return '...';
-      }
-      return race.stadium;
-    };
-    const groundText = (race: Race): string => {
-      if (race.grade === Grade.NOT_WINNING) {
-        return '...';
-      }
-      switch (race.ground) {
-        case Ground.TURF:
-          return '芝';
-        case Ground.DART:
-          return 'ダート';
-        default:
-          return Ground[race.ground];
-      }
-    };
-    const distanceText = (race: Race): string => {
-      if (race.grade === Grade.NOT_WINNING) {
-        return '...';
-      }
-      return `${race.distance}m`;
-    };
-    const gradeText = (race: Race): string => {
-      switch (race.grade) {
-        case Grade.NOT_WINNING:
-          return '未勝利戦';
-        case Grade.PRE_OP:
-          return 'Pre-OP';
-        default:
-          return Grade[race.grade];
-      }
-    };
-
-    return {
-      stadiumText,
-      groundText,
-      gradeText,
-      distanceText,
-      actionProxy,
-    };
-  },
-  data() {
-    return {
-      mdiCancel,
-      mdiShieldCheck,
-      mdiThumbUp,
-      mdiThumbDown,
-      mdiThumbsUpDown,
-    };
+  hideDate: {
+    type: Boolean,
   },
 });
+const emit = defineEmits<{
+  (e: 'update:action', v: Action): void;
+}>();
+
+const actionProxy = usePropVModel({ emit }, props, 'action');
+const stadiumText = (race: Race): string => {
+  if (race.grade === Grade.NOT_WINNING) {
+    return '...';
+  }
+  return race.stadium;
+};
+const groundText = (race: Race): string => {
+  if (race.grade === Grade.NOT_WINNING) {
+    return '...';
+  }
+  switch (race.ground) {
+    case Ground.TURF:
+      return '芝';
+    case Ground.DART:
+      return 'ダート';
+    default:
+      return Ground[race.ground];
+  }
+};
+const distanceText = (race: Race): string => {
+  if (race.grade === Grade.NOT_WINNING) {
+    return '...';
+  }
+  return `${race.distance}m`;
+};
+const gradeText = (race: Race): string => {
+  switch (race.grade) {
+    case Grade.NOT_WINNING:
+      return '未勝利戦';
+    case Grade.PRE_OP:
+      return 'Pre-OP';
+    default:
+      return Grade[race.grade];
+  }
+};
 </script>

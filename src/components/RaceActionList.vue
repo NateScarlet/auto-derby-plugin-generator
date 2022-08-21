@@ -84,13 +84,7 @@
         />
       </label>
     </div>
-    <VirtualList
-      is="ol"
-      class="flex-auto"
-      :values="listData"
-      :item-height="64"
-      :size="8"
-    >
+    <VirtualList is="ol" class="flex-auto" :values="listData" :item-height="96">
       <template #default="{ value: i, attrs, index }">
         <RaceActionListItemVue
           v-bind="attrs"
@@ -115,140 +109,126 @@ import useSingleModeRaces from '@/composables/useSingleModeRaces';
 import type { Action, RaceAction } from '@/plugin-generators/race';
 import Grade from '@/domain/single_mode/Grade';
 import Ground from '@/domain/single_mode/Ground';
+</script>
 
-export default defineComponent({
-  name: 'RaceActionList',
-  components: {
-    RaceActionListItemVue,
+<script setup lang="ts">
+const props = defineProps({
+  modelValue: {
+    type: Array as PropType<RaceAction[]>,
+    required: true,
   },
-  props: {
-    modelValue: {
-      type: Array as PropType<RaceAction[]>,
-      required: true,
-    },
-    defaultAction: {
-      type: String as PropType<Action>,
-      default: 'none',
-    },
-  },
-  emits: {
-    'update:modelValue': null,
-  },
-  setup: (props, ctx) => {
-    const modelValueProxy = usePropVModel(ctx, props, 'modelValue');
-    const races = useSingleModeRaces();
-    const formData = reactive({
-      query: '',
-      modifiedOnly: false,
-      includeTurf: true,
-      includeDart: true,
-      includeG1: true,
-      includeG2: true,
-      includeG3: true,
-      includePreOP: true,
-      includeOP: true,
-      includeNotWinning: true,
-    });
-    const normalizedRaces = computed(() =>
-      races.value
-        .flatMap((race) =>
-          race.turnCounts().map((turn) => ({
-            turn,
-            race,
-          }))
-        )
-        .sort((a, b) => (a.turn < b.turn ? -1 : 1))
-    );
-    const filteredRaces = computed(() =>
-      normalizedRaces.value.filter((i) => {
-        if (i.race.isTargetRace()) {
-          return false;
-        }
-        if (
-          formData.query.trim() &&
-          !formData.query
-            .split(' ')
-            .filter((word) => word.trim())
-            .some(
-              (word) =>
-                i.race.name.includes(word) || i.race.stadium.includes(word)
-            )
-        ) {
-          return false;
-        }
-        if (
-          formData.modifiedOnly &&
-          !modelValueProxy.value.some(
-            (j) => j.turn === i.turn && j.name === i.race.name
-          )
-        ) {
-          return false;
-        }
-        if (i.race.grade !== Grade.NOT_WINNING) {
-          if (!formData.includeTurf && i.race.ground === Ground.TURF) {
-            return false;
-          }
-          if (!formData.includeDart && i.race.ground === Ground.DART) {
-            return false;
-          }
-        }
-        if (!formData.includeG1 && i.race.grade === Grade.G1) {
-          return false;
-        }
-        if (!formData.includeG2 && i.race.grade === Grade.G2) {
-          return false;
-        }
-        if (!formData.includeG3 && i.race.grade === Grade.G3) {
-          return false;
-        }
-        if (!formData.includePreOP && i.race.grade === Grade.PRE_OP) {
-          return false;
-        }
-        if (!formData.includeOP && i.race.grade === Grade.OP) {
-          return false;
-        }
-        if (!formData.includeNotWinning && i.race.grade === Grade.NOT_WINNING) {
-          return false;
-        }
-        return true;
-      })
-    );
-
-    const listData = computed(() =>
-      uniqBy(filteredRaces.value, (i) => `${i.turn}:${i.race.name}`).map(
-        (i) => ({
-          race: i.race,
-          turn: i.turn,
-          action:
-            modelValueProxy.value.find(
-              (j) => j.turn === i.turn && j.name === i.race.name
-            )?.action ?? props.defaultAction,
-          handleUpdateAction: (v: Action) => {
-            modelValueProxy.value = [
-              ...modelValueProxy.value.filter(
-                (j) => !(j.turn === i.turn && j.name === i.race.name)
-              ),
-              ...(v === props.defaultAction
-                ? []
-                : [
-                    {
-                      turn: i.turn,
-                      name: i.race.name,
-                      action: v,
-                    },
-                  ]),
-            ];
-          },
-        })
-      )
-    );
-    return {
-      races,
-      normalizedRaces,
-      filteredRaces,
-      listData,
-      formData,
-    };
+  defaultAction: {
+    type: String as PropType<Action>,
+    default: 'none',
   },
 });
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', v: RaceAction[]): void;
+}>();
+
+const modelValueProxy = usePropVModel({ emit }, props, 'modelValue');
+const races = useSingleModeRaces();
+const formData = reactive({
+  query: '',
+  modifiedOnly: false,
+  includeTurf: true,
+  includeDart: true,
+  includeG1: true,
+  includeG2: true,
+  includeG3: true,
+  includePreOP: true,
+  includeOP: true,
+  includeNotWinning: true,
+});
+const normalizedRaces = computed(() =>
+  races.value
+    .flatMap((race) =>
+      race.turnCounts().map((turn) => ({
+        turn,
+        race,
+      }))
+    )
+    .sort((a, b) => (a.turn < b.turn ? -1 : 1))
+);
+const filteredRaces = computed(() =>
+  normalizedRaces.value.filter((i) => {
+    if (i.race.isTargetRace()) {
+      return false;
+    }
+    if (
+      formData.query.trim() &&
+      !formData.query
+        .split(' ')
+        .filter((word) => word.trim())
+        .some(
+          (word) => i.race.name.includes(word) || i.race.stadium.includes(word)
+        )
+    ) {
+      return false;
+    }
+    if (
+      formData.modifiedOnly &&
+      !modelValueProxy.value.some(
+        (j) => j.turn === i.turn && j.name === i.race.name
+      )
+    ) {
+      return false;
+    }
+    if (i.race.grade !== Grade.NOT_WINNING) {
+      if (!formData.includeTurf && i.race.ground === Ground.TURF) {
+        return false;
+      }
+      if (!formData.includeDart && i.race.ground === Ground.DART) {
+        return false;
+      }
+    }
+    if (!formData.includeG1 && i.race.grade === Grade.G1) {
+      return false;
+    }
+    if (!formData.includeG2 && i.race.grade === Grade.G2) {
+      return false;
+    }
+    if (!formData.includeG3 && i.race.grade === Grade.G3) {
+      return false;
+    }
+    if (!formData.includePreOP && i.race.grade === Grade.PRE_OP) {
+      return false;
+    }
+    if (!formData.includeOP && i.race.grade === Grade.OP) {
+      return false;
+    }
+    if (!formData.includeNotWinning && i.race.grade === Grade.NOT_WINNING) {
+      return false;
+    }
+    return true;
+  })
+);
+
+const listData = computed(() =>
+  uniqBy(filteredRaces.value, (i) => `${i.turn}:${i.race.name}`).map((i) => ({
+    race: i.race,
+    turn: i.turn,
+    action:
+      modelValueProxy.value.find(
+        (j) => j.turn === i.turn && j.name === i.race.name
+      )?.action ?? props.defaultAction,
+    handleUpdateAction: (v: Action) => {
+      modelValueProxy.value = [
+        ...modelValueProxy.value.filter(
+          (j) => !(j.turn === i.turn && j.name === i.race.name)
+        ),
+        ...(v === props.defaultAction
+          ? []
+          : [
+              {
+                turn: i.turn,
+                name: i.race.name,
+                action: v,
+              },
+            ]),
+      ];
+    },
+  }))
+);
 </script>
