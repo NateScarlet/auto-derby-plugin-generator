@@ -1,0 +1,51 @@
+{
+  "folders": [{ "path": "." }],
+  "settings": {
+    "eslint.packageManager": "pnpm"
+  },
+  "launch": {
+    "configurations": [
+      {
+        "name": "Launch Chrome",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}",
+        "preLaunchTask": "dev",
+      }
+    ],
+    "compounds": []
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "dev",
+        "type": "shell",
+        "isBackground": true,
+        "command": "pnpm",
+        "args": ["dev"],
+        "problemMatcher": [
+          {
+            "pattern": {
+              "regexp": ""
+            },
+            "background": {
+              "beginsPattern": "^  vite v",
+              "endsPattern": "^  ready in \\d+ms.$",
+              "activeOnStart": true
+            }
+          }
+        ],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        }
+      }
+    ]
+  }
+}
