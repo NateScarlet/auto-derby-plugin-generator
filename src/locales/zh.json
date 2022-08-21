@@ -2,7 +2,9 @@
   "welcome": {
     "app-name": "auto-derby 插件生成器",
     "start": "开始",
+    "feedback": "意见反馈",
     "generate-race-plugin": "生成赛程插件"
+
   },
   "plugin": {
     "name": "名称",

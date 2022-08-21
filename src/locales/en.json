@@ -2,6 +2,7 @@
   "welcome": {
     "app-name": "auto-derby plugin generator",
     "start": "Start",
+    "feedback": "Feedback",
     "generate-race-plugin": "Generate Race Plugin"
   },
   "plugin": {

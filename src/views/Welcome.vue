@@ -19,6 +19,15 @@
               <i18n-t keypath="welcome.generate-race-plugin"></i18n-t>
             </RouterLink>
           </li>
+          <li>
+            <a
+              href="https://github.com/NateScarlet/auto-derby-plugin-generator/issues"
+              target="_blank"
+              class="ui-link"
+            >
+              <i18n-t keypath="welcome.feedback"></i18n-t>
+            </a>
+          </li>
         </ol>
       </section>
     </div>
