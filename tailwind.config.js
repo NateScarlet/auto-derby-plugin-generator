@@ -8,12 +8,7 @@ function inlineSVG(svg) {
 
 module.exports = {
   important: '#h',
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true,
-  },
+  content: ['src/**/*.{vue,ts}', 'public/**/*.html'],
   darkMode: false,
   theme: {
     extend: {
@@ -56,9 +51,5 @@ module.exports = {
       }),
     },
   },
-  variants: {},
   plugins: [forms],
-  purge: {
-    content: ['src/**/*.{vue,ts}', 'public/**/*.html'],
-  },
 };

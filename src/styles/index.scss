@@ -155,7 +155,7 @@ input[type='checkbox'] {
 }
 
 .ui-link {
-  @apply underline text-blue-400 hover:text-blue-400 hover:underline cursor-pointer;
+  @apply underline underline-offset-2 text-blue-400 hover:text-blue-400 hover:underline cursor-pointer;
 }
 
 /* purgecss end ignore */
