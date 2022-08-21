@@ -39,10 +39,10 @@ specifiers:
   vue-i18n: ^9.1.7
   vue-router: ^4.0.10
   workbox-broadcast-update: ^6.5.4
-  workbox-precaching: ^6.4.1
+  workbox-precaching: ^6.5.4
   workbox-routing: ^6.5.4
   workbox-strategies: ^6.5.4
-  workbox-window: ^6.4.1
+  workbox-window: ^6.5.4
 
 dependencies:
   '@juggle/resize-observer': 3.3.1
@@ -58,10 +58,10 @@ dependencies:
   vue: 3.2.23
   vue-i18n: 9.1.7_vue@3.2.23
   vue-router: 4.0.10_vue@3.2.23
-  workbox-precaching: 6.4.1
+  workbox-precaching: 6.5.4
   workbox-routing: 6.5.4
   workbox-strategies: 6.5.4
-  workbox-window: 6.4.1
+  workbox-window: 6.5.4
 
 devDependencies:
   '@babel/core': 7.17.8
@@ -1611,7 +1611,7 @@ packages:
     dev: true
 
   /@types/trusted-types/2.0.2:
-    resolution: {integrity: sha1-/CWtmUO8rBHM64Fo208nXg5y51Y=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/@types/trusted-types/download/@types/trusted-types-2.0.2.tgz}
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
 
   /@typescript-eslint/eslint-plugin/5.5.0_fkjv6wfdzqfq6qufnthrrwbwp4:
     resolution: {integrity: sha512-4bV6fulqbuaO9UMXU0Ia0o6z6if+kmMRW8rMRyfqXj/eGrZZRGedS4n0adeGNnjr8LKAM495hrQ7Tea52UWmQA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-5.5.0.tgz}
@@ -1704,7 +1704,7 @@ packages:
       debug: 4.3.3
       globby: registry.nlark.com/globby/11.0.4
       is-glob: 4.0.3
-      semver: 7.3.5
+      semver: 7.3.7
       tsutils: registry.nlark.com/tsutils/3.21.0_typescript@4.5.2
       typescript: 4.5.2
     transitivePeerDependencies:
@@ -1716,7 +1716,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.5.0
-      eslint-visitor-keys: 3.1.0
+      eslint-visitor-keys: 3.3.0
     dev: true
 
   /@vitejs/plugin-legacy/1.6.3_vite@2.6.14:
@@ -1831,12 +1831,12 @@ packages:
       acorn: 7.4.1
     dev: true
 
-  /acorn-jsx/5.3.2_acorn@8.6.0:
+  /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.6.0
+      acorn: 8.8.0
     dev: true
 
   /acorn/7.4.1:
@@ -1847,6 +1847,12 @@ packages:
 
   /acorn/8.6.0:
     resolution: {integrity: sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
+  /acorn/8.8.0:
+    resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -1973,7 +1979,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.14.6
     optionalDependencies:
-      moment: 2.29.1
+      moment: 2.29.4
     dev: false
 
   /chalk/2.4.2:
@@ -2622,6 +2628,11 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
+  /eslint-visitor-keys/3.3.0:
+    resolution: {integrity: sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
   /eslint/8.3.0:
     resolution: {integrity: sha512-aIay56Ph6RxOTC7xyr59Kt3ewX185SaGnAr8eWukoPLeriCrvGjvAubxuvaXOfsxhtwV5g0uBOsyhAom4qJdww==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/eslint/download/eslint-8.3.0.tgz}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2682,9 +2693,18 @@ packages:
     resolution: {integrity: sha512-ZgYLvCS1wxOczBYGcQT9DDWgicXwJ4dbocr9uYN+/eresBAUuBu+O4WzB21ufQ/JqQT8gyp7hJ3z8SHii32mTQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/espree/-/espree-9.1.0.tgz}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.6.0
-      acorn-jsx: 5.3.2_acorn@8.6.0
+      acorn: 8.8.0
+      acorn-jsx: 5.3.2_acorn@8.8.0
       eslint-visitor-keys: 3.1.0
+    dev: true
+
+  /espree/9.3.3:
+    resolution: {integrity: sha512-ORs1Rt/uQTqUKjDdGCyrtYxbazf5umATSf/K4qxjmZHORR6HJk+2s/2Pqe+Kk49HHINC/xNIrGfgh8sZcll0ng==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dependencies:
+      acorn: 8.8.0
+      acorn-jsx: 5.3.2_acorn@8.8.0
+      eslint-visitor-keys: 3.3.0
     dev: true
 
   /estraverse/4.3.0:
@@ -2920,8 +2940,8 @@ packages:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/minimist/-/minimist-1.2.5.tgz}
     dev: true
 
-  /moment/2.29.1:
-    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
     requiresBuild: true
     dev: false
     optional: true
@@ -3127,6 +3147,14 @@ packages:
       lru-cache: registry.nlark.com/lru-cache/6.0.0
     dev: true
 
+  /semver/7.3.7:
+    resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: registry.nlark.com/lru-cache/6.0.0
+    dev: true
+
   /simple-swizzle/0.2.2:
     resolution: {integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/simple-swizzle/download/simple-swizzle-0.2.2.tgz}
     dependencies:
@@ -3153,8 +3181,8 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  /source-map/0.7.3:
-    resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
+  /source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
     dev: true
 
@@ -3255,9 +3283,9 @@ packages:
       acorn:
         optional: true
     dependencies:
-      acorn: 8.6.0
+      acorn: 8.8.0
       commander: 2.20.3
-      source-map: 0.7.3
+      source-map: 0.7.4
       source-map-support: 0.5.21
     dev: true
 
@@ -3345,7 +3373,7 @@ packages:
       rollup: 2.60.2
       vite: 2.6.14_sass@1.44.0
       workbox-build: 6.4.1_@types+babel__core@7.1.19
-      workbox-window: 6.4.1
+      workbox-window: 6.5.4
     transitivePeerDependencies:
       - '@types/babel__core'
       - supports-color
@@ -3385,8 +3413,8 @@ packages:
       debug: 4.3.3
       eslint: 8.3.0
       eslint-scope: 6.0.0
-      eslint-visitor-keys: 3.1.0
-      espree: 9.1.0
+      eslint-visitor-keys: 3.3.0
+      espree: 9.3.3
       esquery: registry.nlark.com/esquery/1.4.0
       lodash: 4.17.21
       semver: 7.3.5
@@ -3508,6 +3536,7 @@ packages:
 
   /workbox-core/6.4.1:
     resolution: {integrity: sha512-5hosqpSK+48jHlj+5EHN5dtH1Ade4fqTe4+xX3U9wWK1SDaXEqXpVxdHuBqYfg75UE1PUINA0rhMZWTqeGoLFg==}
+    dev: true
 
   /workbox-core/6.5.4:
     resolution: {integrity: sha512-OXYb+m9wZm8GrORlV2vBbE5EC1FKu71GGp0H4rjmxmF4/HLbMCoTFws87M3dFwgpmg0v00K++PImpNQ6J5NQ6Q==}
@@ -3535,11 +3564,20 @@ packages:
     dev: true
 
   /workbox-precaching/6.4.1:
-    resolution: {integrity: sha512-Sq8d+/wfcXFjwuVwKe2VxD4QddRBgkO6pJVgpHbk5WFynR8dc8Zj3BlJ38e4nMlRuBZ8996TIgAmk/U6Rr5YHQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/workbox-precaching/download/workbox-precaching-6.4.1.tgz}
+    resolution: {integrity: sha512-Sq8d+/wfcXFjwuVwKe2VxD4QddRBgkO6pJVgpHbk5WFynR8dc8Zj3BlJ38e4nMlRuBZ8996TIgAmk/U6Rr5YHQ==}
     dependencies:
       workbox-core: 6.4.1
       workbox-routing: 6.4.1
       workbox-strategies: 6.4.1
+    dev: true
+
+  /workbox-precaching/6.5.4:
+    resolution: {integrity: sha512-hSMezMsW6btKnxHB4bFy2Qfwey/8SYdGWvVIKFaUm8vJ4E53JAY+U2JwLTRD8wbLWoP6OVUdFlXsTdKu9yoLTg==}
+    dependencies:
+      workbox-core: 6.5.4
+      workbox-routing: 6.5.4
+      workbox-strategies: 6.5.4
+    dev: false
 
   /workbox-range-requests/6.4.1:
     resolution: {integrity: sha512-X/asYHeuWIKg5Tk+dfmiEOo9hlkQ1K737dnENj8zL97kZDdcfokPT5CuXgM2xqX7NMoahONq1Eo2UoFfJNjZzg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/workbox-range-requests/download/workbox-range-requests-6.4.1.tgz}
@@ -3562,6 +3600,7 @@ packages:
     resolution: {integrity: sha512-FIy27mwM3WdDASOTMX10OZ8q3Un47ULeDtDrDAKfWYIP/oTF2xoA1/HtXpOjBlyg5VP/poPX5GDojXHXAXpfzQ==}
     dependencies:
       workbox-core: 6.4.1
+    dev: true
 
   /workbox-routing/6.5.4:
     resolution: {integrity: sha512-apQswLsbrrOsBUWtr9Lf80F+P1sHnQdYodRo32SjiByYi36IDyL2r7BH1lJtFX8fwNHDa1QOVY74WKLLS6o5Pg==}
@@ -3573,6 +3612,7 @@ packages:
     resolution: {integrity: sha512-2UQ+7Siy4Z5QG2LebbVhDLmPG3M7bVo/tZqN4LNUGXS6fDlpbTTK6A3Hu0W8gCVwIX0tSg7U3mVhDntH4qt3Dg==}
     dependencies:
       workbox-core: 6.4.1
+    dev: true
 
   /workbox-strategies/6.5.4:
     resolution: {integrity: sha512-DEtsxhx0LIYWkJBTQolRxG4EI0setTJkqR4m7r4YpBdxtWJH1Mbg01Cj8ZjNOO8etqfA3IZaOPHUxCs8cBsKLw==}
@@ -3592,10 +3632,17 @@ packages:
     dev: true
 
   /workbox-window/6.4.1:
-    resolution: {integrity: sha512-v5G1U+NN0sHErvE9fzHRA75FrfRFj/0dihFnvno5yqHZZIb9G4U2AarodSDRBC3t6CsnLO68l1Bj1gsHqsM9Qw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/workbox-window/download/workbox-window-6.4.1.tgz}
+    resolution: {integrity: sha512-v5G1U+NN0sHErvE9fzHRA75FrfRFj/0dihFnvno5yqHZZIb9G4U2AarodSDRBC3t6CsnLO68l1Bj1gsHqsM9Qw==}
     dependencies:
       '@types/trusted-types': 2.0.2
       workbox-core: 6.4.1
+    dev: true
+
+  /workbox-window/6.5.4:
+    resolution: {integrity: sha512-HnLZJDwYBE+hpG25AQBO8RUWBJRaCsI9ksQJEp3aCOFCaG5kqaToAYXFRAHxzRluM2cQbGzdQF5rjKPWPA1fug==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+      workbox-core: 6.5.4
 
   /yaml-eslint-parser/0.3.2:
     resolution: {integrity: sha512-32kYO6kJUuZzqte82t4M/gB6/+11WAuHiEnK7FreMo20xsCKPeFH5tDBU7iWxR7zeJpNnMXfJyXwne48D0hGrg==}
