@@ -14,6 +14,8 @@ self.addEventListener('message', (event) => {
 class ForceRevalidatePlugin implements WorkboxPlugin {
   requestWillFetch: WorkboxPlugin['requestWillFetch'];
 
+  fetchDidSucceed: WorkboxPlugin['fetchDidSucceed'];
+
   cacheKeyWillBeUsed: WorkboxPlugin['cacheKeyWillBeUsed'];
 
   constructor({
@@ -23,16 +25,40 @@ class ForceRevalidatePlugin implements WorkboxPlugin {
     paramKey?: string;
     paramValue?: () => string;
   } = {}) {
-    this.requestWillFetch = async ({ request }) => {
-      const url = new URL(request.url);
-      url.searchParams.set(paramKey, paramValue());
-
-      return new Request(url, request);
-    };
-    this.cacheKeyWillBeUsed = async ({ request }) => {
+    const cacheKey = (request: Request): string => {
       const url = new URL(request.url);
       url.searchParams.delete(paramKey);
       return url.toString();
+    };
+
+    this.requestWillFetch = async ({ request }) => {
+      const url = new URL(request.url);
+      url.searchParams.set(paramKey, paramValue());
+      const cachedResp = await self.caches.match(cacheKey(request));
+      const cachedETag = cachedResp?.headers.get('ETag');
+      if (cachedETag) {
+        const currentETag = (await fetch(url, { method: 'HEAD' })).headers.get(
+          'ETag'
+        );
+        if (currentETag === cachedETag) {
+          // no key means use cache
+          url.searchParams.delete(paramKey);
+        }
+      }
+
+      return new Request(url, request);
+    };
+
+    this.fetchDidSucceed = async ({ response, request }) => {
+      const url = new URL(response.url);
+      if (url.searchParams.has(paramKey)) {
+        return response;
+      }
+      return (await self.caches.match(cacheKey(request))) ?? response;
+    };
+
+    this.cacheKeyWillBeUsed = async ({ request }) => {
+      return cacheKey(request);
     };
   }
 }
