@@ -1,9 +1,4 @@
 <template>
-  <link
-    crossorigin="anonymous"
-    rel="prefetch"
-    :href="SINGLE_MODE_RACE_DATA_URL"
-  />
   <nav class="bg-gray-200 flex items-center gap-2">
     <template v-if="route.path != '/'">
       <router-link to="/" class="float-left">
