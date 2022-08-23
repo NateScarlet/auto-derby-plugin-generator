@@ -10,7 +10,7 @@
       class="w-full rounded border-2 p-1 border-gray-200 flex flex-col justify-between max-w-lg"
     >
       <div>
-        <span class="font-bold text-lg">
+        <span class="font-bold text-lg select-all">
           {{ race.name }}
         </span>
         <span class="float-right text-sm sm:hidden text-gray-500">
