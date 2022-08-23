@@ -16,7 +16,9 @@ events.workboxCacheUpdate.addEventListener((e) => {
 const races = usePromise(
   computed(async () => {
     const _ = version.value; // refetch on version change
-    const resp = await fetch(SINGLE_MODE_RACE_DATA_URL);
+    const resp = await fetch(SINGLE_MODE_RACE_DATA_URL, {
+      cache: 'no-cache',
+    });
     return (await resp.text())
       .split('\n')
       .map((i) => {
